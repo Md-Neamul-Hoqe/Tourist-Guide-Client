@@ -8,7 +8,7 @@
 }
 
 a.active {
-  @apply bg-transparent text-[#EEFF25] !important;
+  @apply bg-transparent text-black font-extrabold !important;
 }
 
 .react-tabs {

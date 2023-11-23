@@ -1,7 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
+import logo from "/Vector.svg";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+  const { user, userSignOut } = useAuth();
+
   const navLinks = (
     <>
       <li>
@@ -22,16 +27,15 @@ const Navbar = () => {
     </>
   );
 
-  const userSide = (
-    <>
-      <li>
-        <NavLink to="/register">Register</NavLink>
-      </li>
-      <li>
-        <NavLink to="/login">Login</NavLink>
-      </li>
-    </>
-  );
+  const handleLogOut = () => {
+    try {
+      userSignOut().then(() => {
+        return Swal.fire("Sign Out Successfully");
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <nav className="navbar bg-base-100">
@@ -58,15 +62,53 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">Dream Place</a>
+        <a className="btn btn-ghost text-xl">
+          <img src={logo} alt="Dream Place" />
+          Dream Place
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-        <button>
-          <FaRegUserCircle />
-        </button>
+        {!user ? (
+          <div className="dropdown max-w-[40vw]">
+            <button tabIndex={0}>
+              {user?.photoURL ? (
+                <img src={user?.photoURL} alt={user?.displayName}></img>
+              ) : (
+                <FaRegUserCircle className="text-3xl text-green-800" />
+              )}
+            </button>
+            <ul tabIndex={0} className="menu dropdown-content right-0">
+              <ul className="border rounded-t-lg">
+                <li className="px-2 py-1">
+                  name: {user?.displayName || user?.email.split("@")[0]}
+                </li>
+                <li className="px-2 py-1">email: {user?.email}</li>
+              </ul>
+              <li className="border px-5 py-1">
+                <NavLink to="/dashboard">Dashboard</NavLink>
+              </li>
+              <li className="border px-5 py-1 last-of-type:rounded-b-md">
+                <button onClick={handleLogOut}>Log Out</button>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <div className="flex gap-3">
+            <Link
+              className={`btn btn-ghost border-green-700 hover:bg-green-700 hover:text-white`}
+              to="/register">
+              Register
+            </Link>
+            <Link
+              className={`btn btn-ghost border-green-700 hover:bg-green-700 hover:text-white`}
+              to="/login">
+              Login
+            </Link>
+          </div>
+        )}
       </div>
     </nav>
   );
