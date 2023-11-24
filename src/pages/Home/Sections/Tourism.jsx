@@ -9,6 +9,7 @@ import YouTube from "react-youtube";
 import { useState } from "react";
 import TouristPackage from "../Components/TouristPackage";
 import TouristGuid from "../Components/TouristGuid";
+import { motion } from "framer-motion";
 
 const Tourism = () => {
   const [noOfPackages, setNoOfPackages] = useState(4);
@@ -186,11 +187,13 @@ const Tourism = () => {
           ) : null}
 
           <div className="absolute right-10 bottom-0">
-            <Link
+            <motion.a
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               className="btn btn-circle btn-outline outline-dotted outline-blue-700 btn-lg"
               to="tel:+8801725958889">
               <BsTelephone className="text-blue-700 text-3xl" />
-            </Link>
+            </motion.a>
           </div>
         </TabPanel>
 
