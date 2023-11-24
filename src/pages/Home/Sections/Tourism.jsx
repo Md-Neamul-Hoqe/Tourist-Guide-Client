@@ -25,7 +25,7 @@ const Tourism = () => {
     queryKey: ["guides"],
     queryFn: async () => {
       const res = await axios.get("/guides.json");
-      console.log(res?.data);
+      // console.log(res?.data);
       return res?.data;
     },
   });
@@ -39,7 +39,7 @@ const Tourism = () => {
     queryKey: ["packages"],
     queryFn: async () => {
       const res = await axios.get("/packages.json");
-      console.log(res?.data);
+      // console.log(res?.data);
       return res?.data;
     },
   });

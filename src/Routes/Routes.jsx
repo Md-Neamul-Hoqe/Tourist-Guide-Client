@@ -9,6 +9,8 @@ import ErrorPage from "../pages/ErrorPage";
 import PackageDetails from "../pages/PackageDetails/PackageDetails";
 import TourGuideProfile from "../pages/TourGuideProfile/TourGuideProfile";
 import TouristProfile from "../pages/TouristProfile/TouristProfile";
+import PackagesAsType from "../pages/PackagesAsType/PackagesAsType";
+import Story from "../pages/Story/Story";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +41,14 @@ export const router = createBrowserRouter([
       {
         path: "user/tourist/:id",
         element: <TouristProfile />,
+      },
+      {
+        path: "packages/:type",
+        element: <PackagesAsType />,
+      },
+      {
+        path: "user/story/:id",
+        element: <Story />,
       },
     ],
   },

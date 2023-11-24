@@ -1,4 +1,6 @@
 import Banner from "./Sections/Banner";
+import Stories from "./Sections/Stories";
+import TourType from "./Sections/TourType";
 import Tourism from "./Sections/Tourism";
 
 const Home = () => {
@@ -6,6 +8,8 @@ const Home = () => {
     <>
       <Banner />
       <Tourism />
+      <TourType />
+      <Stories />
     </>
   );
 };
