@@ -6,6 +6,9 @@ import ContactUs from "../pages/ContactUs/ContactUs";
 import MainLayout from "../Layouts/MainLayout";
 import Home from "../pages/Home/Home";
 import ErrorPage from "../pages/ErrorPage";
+import PackageDetails from "../pages/PackageDetails/PackageDetails";
+import TourGuideProfile from "../pages/TourGuideProfile/TourGuideProfile";
+import TouristProfile from "../pages/TouristProfile/TouristProfile";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +27,18 @@ export const router = createBrowserRouter([
       {
         path: "logout",
         element: <Login />,
+      },
+      {
+        path: "details/:id",
+        element: <PackageDetails />,
+      },
+      {
+        path: "user/guides/:id",
+        element: <TourGuideProfile />,
+      },
+      {
+        path: "user/tourist/:id",
+        element: <TouristProfile />,
       },
     ],
   },

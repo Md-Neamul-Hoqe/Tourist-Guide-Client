@@ -54,14 +54,14 @@ const Tourism = () => {
 
         <TabPanel>
           <div className="w-full my-20">
-            <div className="w-[80%] mx-auto">
+            <div className="w-full md:w-[80%] mx-auto">
               <YouTube
                 videoId="vzSHcyXfNPw"
                 opts={{
                   height: "500",
                   width: "100%",
                   playerVars: {
-                    autoplay: 1,
+                    // autoplay: 1,
                   },
                 }}
                 onReady={(event) => {
@@ -162,6 +162,7 @@ const Tourism = () => {
             </div>
           </div>
         </TabPanel>
+
         <TabPanel>
           {packagesPending || packagesLoading ? (
             "Loading..."
@@ -192,6 +193,7 @@ const Tourism = () => {
             </Link>
           </div>
         </TabPanel>
+
         <TabPanel>
           {guidesPending || guidesLoading ? (
             "Loading..."
