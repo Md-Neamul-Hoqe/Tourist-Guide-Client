@@ -1,10 +1,50 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import maxWidthStyles from "../../Shared/SectionMaxWidth";
+import { Link } from "react-router-dom";
+import { BsTelephone } from "react-icons/bs";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import YouTube from "react-youtube";
+import { useState } from "react";
+import TouristPackage from "../Components/TouristPackage";
+import TouristGuid from "../Components/TouristGuid";
 
 const Tourism = () => {
+  const [noOfPackages, setNoOfPackages] = useState(4);
+  const [noOfGuides, setNoOfGuides] = useState(4);
+  const axios = useAxiosPublic();
+
+  const {
+    data: guides = [],
+    // refetch,
+    isPending: guidesPending,
+    isLoading: guidesLoading,
+  } = useQuery({
+    queryKey: ["guides"],
+    queryFn: async () => {
+      const res = await axios.get("/guides.json");
+      console.log(res?.data);
+      return res?.data;
+    },
+  });
+
+  const {
+    data: packages = [],
+    // refetch,
+    isPending: packagesPending,
+    isLoading: packagesLoading,
+  } = useQuery({
+    queryKey: ["packages"],
+    queryFn: async () => {
+      const res = await axios.get("/packages.json");
+      console.log(res?.data);
+      return res?.data;
+    },
+  });
+
   return (
-    <div className={`py-24 ${maxWidthStyles}`}>
+    <div className={`py-24 relative ${maxWidthStyles}`}>
       <Tabs>
         <TabList>
           <Tab>Overview</Tab>
@@ -13,17 +53,29 @@ const Tourism = () => {
         </TabList>
 
         <TabPanel>
-          <div className="w-full my-10">
-            <iframe
-            className="mx-auto rounded-box"
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/vzSHcyXfNPw?si=c3uBnLacbnVvOptL&amp;start=0"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen></iframe>
-            <h5 className="font-mono pt-5">Iceland Vacation Travel Guide | Dream Place</h5>
+          <div className="w-full my-20">
+            <div className="w-[80%] mx-auto">
+              <YouTube
+                videoId="vzSHcyXfNPw"
+                opts={{
+                  height: "500",
+                  width: "100%",
+                  playerVars: {
+                    autoplay: 1,
+                  },
+                }}
+                onReady={(event) => {
+                  event.target.mute();
+                  event.target.setVolume(0);
+                  event.target.pauseVideo();
+                }}
+                title="YouTube video player"
+              />
+            </div>
+
+            <h5 className="font-mono pt-5">
+              Iceland Vacation Travel Guide | Dream Place
+            </h5>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 text-justify gap-6">
             <div>
@@ -111,10 +163,56 @@ const Tourism = () => {
           </div>
         </TabPanel>
         <TabPanel>
-          <h2>Any content 1</h2>
+          {packagesPending || packagesLoading ? (
+            "Loading..."
+          ) : packages?.length ? (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {packages.slice(0, noOfPackages)?.map((thePackage, idx) => (
+                  <TouristPackage key={idx} thePackage={thePackage} />
+                ))}
+              </div>
+              {noOfPackages !== packages?.length ? (
+                <div className="w-full my-10">
+                  <button
+                    className="btn bg-blue-700 text-white"
+                    onClick={() => setNoOfPackages(packages?.length)}>
+                    All Packages
+                  </button>
+                </div>
+              ) : null}
+            </>
+          ) : null}
+
+          <div className="absolute right-10 bottom-0">
+            <Link
+              className="btn btn-circle btn-outline outline-dotted outline-blue-700 btn-lg"
+              to="tel:+8801725958889">
+              <BsTelephone className="text-blue-700 text-3xl" />
+            </Link>
+          </div>
         </TabPanel>
         <TabPanel>
-          <h2>Any content 2</h2>
+          {guidesPending || guidesLoading ? (
+            "Loading..."
+          ) : guides?.length ? (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {guides.slice(0, noOfGuides)?.map((guide, idx) => (
+                  <TouristGuid key={idx} guide={guide} />
+                ))}
+              </div>
+              {noOfGuides !== guides?.length ? (
+                <div className="w-full my-10">
+                  <button
+                    className="btn bg-blue-700 text-white"
+                    onClick={() => setNoOfGuides(guides?.length)}>
+                    All Guides
+                  </button>
+                </div>
+              ) : null}
+            </>
+          ) : null}
         </TabPanel>
       </Tabs>
     </div>

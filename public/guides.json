@@ -1,0 +1,142 @@
+[
+  {
+    "name": "Elena Rodriguez","role":"guide",
+    "profilePicture": "https://i.ibb.co/WFhJcTx/user-3.png",
+    "contactDetails": {
+      "email": "elena@example.com",
+      "phone": "+1234567890",
+      "socialMedia": {
+        "twitter": "@elena_tourguide",
+        "instagram": "@elena_adventures"
+      }
+    },
+    "education": "Bachelor's in Environmental Science",
+    "skills": ["Hiking", "Wildlife Tracking", "Cultural Interpretation"],
+    "workExperience": [
+      {
+        "packageType": "hill",
+        "position": "Lead Trek Guide",
+        "company": "Summit Explorations",
+        "duration": "5 years"
+      },
+      {
+        "packageType": "hill",
+        "position": "Naturalist Guide",
+        "company": "Alpine Adventures",
+        "duration": "3 years"
+      }
+    ]
+  },
+  {
+    "name": "Javier Santos","role":"guide",
+    "profilePicture": "https://i.ibb.co/28vBqxr/user-2.jpg",
+    "contactDetails": {
+      "email": "javier@example.com",
+      "phone": "+1987654321",
+      "socialMedia": {
+        "facebook": "/javierforestguide",
+        "instagram": "@javier_ecotours"
+      }
+    },
+    "education": "Master's in Wildlife Conservation",
+    "skills": ["Rainforest Ecology", "Bird Watching", "Eco-tourism"],
+    "workExperience": [
+      {
+        "packageType": "forest",
+        "position": "Senior Naturalist",
+        "company": "Amazon Adventures",
+        "duration": "8 years"
+      },
+      {
+        "packageType": "forest",
+        "position": "Conservation Specialist",
+        "company": "Rainforest Renewal",
+        "duration": "4 years"
+      }
+    ]
+  },
+  {
+    "name": "Sophie Johnson","role":"guide",
+    "profilePicture": "https://i.ibb.co/WFhJcTx/user-3.png",
+    "contactDetails": {
+      "email": "sophie@example.com",
+      "phone": "+1122334455",
+      "socialMedia": {
+        "instagram": "@sophie_skydiver",
+        "linkedin": "/sophie-johnson-skydiving"
+      }
+    },
+    "education": "Certified Skydiving Instructor",
+    "skills": ["Skydiving", "Paragliding", "Hot Air Ballooning"],
+    "workExperience": [
+      {
+        "packageType": "sky",
+        "position": "Skydiving Instructor",
+        "company": "SkySoar Adventures",
+        "duration": "6 years"
+      },
+      {
+        "packageType": "sky",
+        "position": "Hot Air Balloon Pilot",
+        "company": "AeroFloat Tours",
+        "duration": "3 years"
+      }
+    ]
+  },
+  {
+    "name": "Andrea Smith","role":"guide",
+    "profilePicture": "https://i.ibb.co/7vx2MGG/user-1.png",
+    "contactDetails": {
+      "email": "andrea@example.com",
+      "phone": "+9876543210",
+      "socialMedia": {
+        "facebook": "/andrea_seachaser",
+        "instagram": "@andrea_sealover"
+      }
+    },
+    "education": "Marine Biology Certification",
+    "skills": ["Scuba Diving", "Yachting", "Marine Conservation"],
+    "workExperience": [
+      {
+        "packageType": "sea",
+        "position": "Marine Guide",
+        "company": "Oceanic Ventures",
+        "duration": "7 years"
+      },
+      {
+        "packageType": "sea",
+        "position": "Yacht Captain",
+        "company": "Seascape Expeditions",
+        "duration": "5 years"
+      }
+    ]
+  },
+  {
+    "name": "Luisa Martinez","role":"guide",
+    "profilePicture": "https://i.ibb.co/WFhJcTx/user-3.png",
+    "contactDetails": {
+      "email": "luisa@example.com",
+      "phone": "+1357924680",
+      "socialMedia": {
+        "facebook": "/luisavillageexplorer",
+        "twitter": "@luisa_explores"
+      }
+    },
+    "education": "Cultural Anthropology Degree",
+    "skills": ["Cultural Immersion", "Local Cuisine", "Community Engagement"],
+    "workExperience": [
+      {
+        "packageType": "village",
+        "position": "Village Tour Specialist",
+        "company": "Cultural Connections",
+        "duration": "6 years"
+      },
+      {
+        "packageType": "village",
+        "position": "Community Outreach Coordinator",
+        "company": "Global Villages Project",
+        "duration": "4 years"
+      }
+    ]
+  }
+]

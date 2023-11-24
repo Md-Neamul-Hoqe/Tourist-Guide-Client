@@ -1,0 +1,161 @@
+[
+  {
+    "type": "hill",
+    "title": "Himalayan Adventure Trek",
+    "price": 2000,
+    "description": "Embark on an exhilarating trek in the breathtaking Himalayas. This 10-day adventure takes you through picturesque trails, serene valleys, and majestic peaks. Experience the rich cultural heritage of the Himalayan villages while exploring stunning landscapes.",
+    "images": [
+      "https://i.ibb.co/rmwbchd/himalaya-adventures.webp",
+      "https://i.ibb.co/rmwbchd/himalaya-adventures.webp"
+    ],
+    "thumbnail": "https://i.ibb.co/rmwbchd/himalaya-adventures.webp"
+  },
+  {
+    "type": "hill",
+    "title": "Alpine Wonderland Expedition",
+    "price": 2400,
+    "description": "Explore the alpine wonderland on this 8-day trek through stunning mountain ranges and alpine meadows. Encounter diverse flora and fauna while traversing challenging yet rewarding trails.",
+    "images": [
+      "https://i.ibb.co/fDxjvpH/alpin-image-1.jpg",
+      "https://i.ibb.co/MgxZvbc/alpin-image.jpg"
+    ],
+    "thumbnail": "https://i.ibb.co/PtbTSbw/alpin-thumb.jpg"
+  },
+  {
+    "type": "hill",
+    "title": "Scottish Highlands Retreat",
+    "price": 1800,
+    "description": "Discover the beauty of the Scottish Highlands on this 6-day retreat. Enjoy scenic hikes, visit historic castles, and experience the rugged charm of Scotland's countryside.",
+    "images": [
+      "https://i.ibb.co/ZHf249H/Jumping-hiker-dreamstime-xxl-26884671.jpg"
+    ],
+    "thumbnail": "https://i.ibb.co/ZHf249H/Jumping-hiker-dreamstime-xxl-26884671.jpg"
+  },
+  {
+    "type": "forest",
+    "title": "Amazon Rainforest Exploration",
+    "price": 2500,
+    "description": "Discover the wonders of the Amazon rainforest on a 7-day expedition. Immerse yourself in dense jungles, encounter diverse wildlife, and witness the unique ecosystems of the world's largest rainforest.",
+    "images": [
+      "https://i.ibb.co/TBrVmNs/Amazon-Rainforest-Exploration.jpg",
+      "https://i.ibb.co/F5mfncC/Amazon-Rainforest-Exploration-rainy-season.jpg",
+      "https://i.ibb.co/5rw8gnH/Amazon-Rainforest-Exploration-thumb.jpg"
+    ],
+    "thumbnail": "https://i.ibb.co/5rw8gnH/Amazon-Rainforest-Exploration-thumb.jpg"
+  },
+  {
+    "type": "forest",
+    "title": "Costa Rican Rainforest Adventure",
+    "price": 2200,
+    "description": "Embark on a thrilling 9-day journey through Costa Rica's lush rainforests. Encounter rare wildlife, hike through vibrant ecosystems, and experience eco-friendly accommodations.",
+    "images": [
+      "https://i.ibb.co/jWJbBPC/Costa-Rican-Rainforest-Adventure-Drone-Waterfall.jpg",
+      "https://i.ibb.co/ZMK3jFj/Costa-Rican-Rainforest-Adventure.jpg"
+    ],
+    "thumbnail": "https://i.ibb.co/d064CYW/Costa-Rican-Rainforest-Adventure-thumb.jpg"
+  },
+  {
+    "type": "forest",
+    "title": "Borneo Jungle Expedition",
+    "price": 2800,
+    "description": "Explore the ancient jungles of Borneo on a 12-day expedition. Discover diverse wildlife, meet indigenous tribes, and navigate through dense forests teeming with natural beauty.",
+    "images": [
+      "https://i.ibb.co/SR14bnZ/Everest-Panorama-Trek.jpg",
+      "https://i.ibb.co/jWJbBPC/Costa-Rican-Rainforest-Adventure-Drone-Waterfall.jpg",
+      "https://i.ibb.co/ZMK3jFj/Costa-Rican-Rainforest-Adventure.jpg"
+    ],
+    "thumbnail": "https://i.ibb.co/SR14bnZ/Everest-Panorama-Trek.jpg"
+  },
+  {
+    "type": "sky",
+    "title": "Hot Air Balloon Adventure",
+    "price": 1500,
+    "description": "Soar above scenic landscapes on a thrilling hot air balloon ride. Enjoy breathtaking views, gentle breezes, and an unforgettable experience floating through the sky.",
+    "images": [
+      "https://i.ibb.co/yyVnJwY/Hot-Air-Balloon-Adventure.jpg",
+      "https://i.ibb.co/ccNMTzW/Hot-Air-Balloon-Adventure-1.jpg"
+    ],
+    "thumbnail": "https://i.ibb.co/zXbh8Xm/Hot-Air-Balloon-Adventure-thumb.jpg"
+  },
+  {
+    "type": "sky",
+    "title": "Paragliding Over Swiss Alps",
+    "price": 1900,
+    "description": "Experience the exhilarating thrill of paragliding over the stunning Swiss Alps. Soar through the skies, marvel at panoramic views, and feel the freedom of flight.",
+    "images": [
+      "https://i.ibb.co/tmtT3vm/Paragliding-Over-Swiss-Alps-thumb.jpg",
+      "https://i.ibb.co/n11vD6P/Rainforest-Adventures-Costa-Rica-Atlantic-featured.jpg"
+    ],
+    "thumbnail": "https://i.ibb.co/tmtT3vm/Paragliding-Over-Swiss-Alps-thumb.jpg"
+  },
+  {
+    "type": "sky",
+    "title": "Skydiving Adventure in New Zealand",
+    "price": 2800,
+    "description": "Embark on an adrenaline-pumping skydiving adventure in New Zealand. Feel the rush of freefall and experience unparalleled views of New Zealand's breathtaking landscapes.",
+    "images": [
+      "https://i.ibb.co/tmtT3vm/Paragliding-Over-Swiss-Alps-thumb.jpg",
+      "https://i.ibb.co/n11vD6P/Rainforest-Adventures-Costa-Rica-Atlantic-featured.jpg"
+    ],
+    "thumbnail": "https://i.ibb.co/3chjv66/Skydiving-Adventure-in-New-Zealand-thumb.jpg"
+  },
+  {
+    "type": "sea",
+    "title": "Caribbean Island Getaway",
+    "price": 3000,
+    "description": "Escape to a serene Caribbean island paradise for a relaxing 5-day retreat. Enjoy pristine beaches, crystal-clear waters, and luxurious accommodations.",
+    "images": [
+      "https://i.ibb.co/M1qpV1t/Caribbean-Island-Getaway-1.jpg",
+      "https://i.ibb.co/7n1Yt97/Caribbean-Island-Getaway-2.jpg"
+    ],
+    "thumbnail": "https://i.ibb.co/M1qpV1t/Caribbean-Island-Getaway-1.jpg"
+  },
+  {
+    "type": "sea",
+    "title": "Mediterranean Cruise Experience",
+    "price": 3600,
+    "description": "Sail through the scenic beauty of the Mediterranean on a luxurious 10-day cruise. Explore historic ports, indulge in gourmet dining, and revel in the luxurious amenities of a premium cruise ship.",
+    "images": [
+      "https://i.ibb.co/ZHf249H/Jumping-hiker-dreamstime-xxl-26884671.jpg",
+      "https://i.ibb.co/LQgcF4N/Mediterranean-Cruise-Experience.jpg"
+    ],
+    "thumbnail": "https://i.ibb.co/J53SdJm/Mediterranean-Cruise-Experience-thumb.jpg"
+  },
+  {
+    "type": "sea",
+    "title": "Great Barrier Reef Expedition",
+    "price": 2600,
+    "description": "Dive into the wonders of the Great Barrier Reef on an 8-day expedition. Snorkel amidst vibrant marine life, witness stunning coral reefs, and explore the world's largest living structure.",
+    "images": ["https://i.ibb.co/4TkjM07/Greek-Island-Exploration.webp"],
+    "thumbnail": "https://i.ibb.co/k0xpfMk/Greek-Island-Exploration-thumb.jpg"
+  },
+  {
+    "type": "village",
+    "title": "Italian Countryside Experience",
+    "price": 1800,
+    "description": "Immerse yourself in the rustic charm of the Italian countryside on a 7-day cultural journey. Explore picturesque villages, savor local cuisine, and experience the warmth of Italian hospitality.",
+    "images": [
+      "https://i.ibb.co/t2Q8qJq/Italian-Countryside-Experience.jpg",
+      "https://i.ibb.co/VxbpZ6k/Japanese-Traditional-Village-Tour.jpg"
+    ],
+    "thumbnail": "https://i.ibb.co/t2Q8qJq/Italian-Countryside-Experience.jpg"
+  },
+  {
+    "type": "village",
+    "title": "Japanese Traditional Village Tour",
+    "price": 2100,
+    "description": "Discover the beauty of traditional Japanese villages on a 5-day cultural tour. Experience ancient traditions, visit historic sites, and learn about the unique customs of rural Japan.",
+    "images": [
+      "https://i.ibb.co/VxbpZ6k/Japanese-Traditional-Village-Tour.jpg"
+    ],
+    "thumbnail": "https://i.ibb.co/smmc7Y2/Japanese-Traditional-Village-Tour-thumb.jpg"
+  },
+  {
+    "type": "village",
+    "title": "Greek Island Exploration",
+    "price": 2500,
+    "description": "Explore the charming Greek islands on a 9-day cultural exploration. Wander through whitewashed villages, sample local delicacies, and immerse yourself in the vibrant Greek island life.",
+    "images": ["https://i.ibb.co/4TkjM07/Greek-Island-Exploration.webp"],
+    "thumbnail": "https://i.ibb.co/k0xpfMk/Greek-Island-Exploration-thumb.jpg"
+  }
+]
