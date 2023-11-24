@@ -1,10 +1,13 @@
+import Banner from "./Sections/Banner";
+import Tourism from "./Sections/Tourism";
 
 const Home = () => {
-    return (
-        <div>
-            My Home Page
-        </div>
-    );
+  return (
+    <>
+      <Banner />
+      <Tourism />
+    </>
+  );
 };
 
 export default Home;
