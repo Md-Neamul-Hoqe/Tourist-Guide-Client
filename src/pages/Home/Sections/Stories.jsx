@@ -11,7 +11,7 @@ const Stories = () => {
     queryKey: ["stories"],
     queryFn: async () => {
       /* Get stories */
-      const res = await axios.get("/stories.json");
+      const res = await axios.get("/user/stories");
 
       /* Get The package thumbnail using the id stored in story packageId */
 

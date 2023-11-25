@@ -13,12 +13,12 @@ const TourType = () => {
     queryKey: ["types"],
     queryFn: async () => {
       const typeList = [];
-      const res = await axios.get("/packages.json");
+      const { data } = await axios.get("/packages");
 
       //   console.log(res?.data);
 
-      res?.data?.length &&
-        res?.data?.map((thePackage) => {
+      data?.length &&
+        data?.map((thePackage) => {
           if (!typeList.find((theObj) => theObj?.type === thePackage?.type))
             typeList.push({
               _id: thePackage?._id,

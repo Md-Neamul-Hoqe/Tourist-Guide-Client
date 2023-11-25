@@ -1,6 +1,36 @@
 [
   {
-    "name": "Elena Rodriguez","role":"guide",
+    "name": "Muhammad Neamul Hoqe",
+    "role": "admin",
+    "profilePicture": "https://i.ibb.co/WFhJcTx/user-3.png",
+    "contactDetails": {
+      "email": "hoqe@gmail.com",
+      "phone": "+1234567890",
+      "socialMedia": {
+        "twitter": "@hoqe",
+        "instagram": "@Neamul"
+      }
+    },
+    "education": "Bachelor's in Environmental Science",
+    "skills": ["Hiking", "Wildlife Tracking", "Cultural Interpretation"],
+    "workExperience": [
+      {
+        "packageType": "hill",
+        "position": "Lead Trek Guide",
+        "company": "Summit Explorations",
+        "duration": "5 years"
+      },
+      {
+        "packageType": "hill",
+        "position": "Naturalist Guide",
+        "company": "Alpine Adventures",
+        "duration": "3 years"
+      }
+    ]
+  },
+  {
+    "name": "Elena Rodriguez",
+    "role": "guide",
     "profilePicture": "https://i.ibb.co/WFhJcTx/user-3.png",
     "contactDetails": {
       "email": "elena@example.com",
@@ -28,7 +58,8 @@
     ]
   },
   {
-    "name": "Javier Santos","role":"guide",
+    "name": "Javier Santos",
+    "role": "guide",
     "profilePicture": "https://i.ibb.co/28vBqxr/user-2.jpg",
     "contactDetails": {
       "email": "javier@example.com",
@@ -56,7 +87,8 @@
     ]
   },
   {
-    "name": "Sophie Johnson","role":"guide",
+    "name": "Sophie Johnson",
+    "role": "tourist",
     "profilePicture": "https://i.ibb.co/WFhJcTx/user-3.png",
     "contactDetails": {
       "email": "sophie@example.com",
@@ -84,7 +116,8 @@
     ]
   },
   {
-    "name": "Andrea Smith","role":"guide",
+    "name": "Andrea Smith",
+    "role": "tourist",
     "profilePicture": "https://i.ibb.co/7vx2MGG/user-1.png",
     "contactDetails": {
       "email": "andrea@example.com",
@@ -112,7 +145,8 @@
     ]
   },
   {
-    "name": "Luisa Martinez","role":"guide",
+    "name": "Luisa Martinez",
+    "role": "tourist",
     "profilePicture": "https://i.ibb.co/WFhJcTx/user-3.png",
     "contactDetails": {
       "email": "luisa@example.com",

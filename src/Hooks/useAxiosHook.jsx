@@ -3,7 +3,8 @@ import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
 
 const axiosInstance = axios.create({
-  baseURL: "https://bistro-boss-restaurant-server-blond.vercel.app",
+  baseURL: "",
+  // baseURL: "https://tourist-guide-server.vercel.app/api/v1",
   withCredentials: true,
 });
 

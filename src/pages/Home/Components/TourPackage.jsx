@@ -1,28 +1,63 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import useAuth from "../../../Hooks/useAuth";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
-const TouristPackage = ({ thePackage }) => {
+const TourPackage = ({ thePackage }) => {
+  const { user, wishList, refetchWishList } = useAuth();
+  const axios = useAxiosPublic();
   const [inWishList, setInWishList] = useState(false);
-  const { user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  console.log(thePackage);
-
-  const handleWishList = (id) => {
-    const wishList = [];
-    if (!wishList.includes(id)) {
-      wishList.push(id);
-    } else {
-      const index = wishList.indexOf(id);
-      wishList.splice(index - 1, 1);
+  const wishListLength = wishList?.length;
+  if (wishListLength)
+    for (let index = 0; index < wishListLength; index++) {
+      if (wishList[index]?.package_id === thePackage?._id) {
+        console.log(wishList[index]?.package_id, thePackage?._id);
+        setInWishList(true);
+        break;
+      }
     }
 
-    /* TODO: update user's wishlist in database [put] */
+  console.log(wishList, inWishList);
 
-    setInWishList(!inWishList);
+  // console.log(thePackage);
+
+  const handleWishList = (id) => {
+    if (!inWishList) {
+      const wishPackage = {
+        package_id: id,
+        email: user?.email || "hoqe1997@gmail.com",
+      };
+
+      /* TODO: Check user is sign in else redirect to sign in page then other process */
+      if (!user?.email) {
+        return navigate("/credentials/login", { state: location?.pathname });
+      }
+
+      axios
+        .post("/wish-list/add-packages", wishPackage)
+        .then((res) => {
+          console.log(res?.data);
+
+          res?.data?.insertedId && setInWishList(!inWishList);
+        })
+        .catch(console.error);
+    } else {
+      axios
+        .delete(`/wish-list/delete-package/${id}`)
+        .then((res) => {
+          console.log(res?.data);
+
+          res?.data?.deletedCount && setInWishList(!inWishList);
+        })
+        .catch(console.error);
+    }
+    refetchWishList();
   };
   return (
     <div className="card bg-base-100 shadow-xl text-start">
@@ -67,8 +102,8 @@ const TouristPackage = ({ thePackage }) => {
   );
 };
 
-TouristPackage.propTypes = {
+TourPackage.propTypes = {
   thePackage: PropTypes.object,
 };
 
-export default TouristPackage;
+export default TourPackage;

@@ -77,17 +77,22 @@ const Navbar = () => {
             <div className="dropdown max-w-[40vw]">
               <button tabIndex={0}>
                 {user?.photoURL ? (
-                  <img src={user?.photoURL} alt={user?.displayName}></img>
+                  <img
+                    className="w-12"
+                    src={user?.photoURL}
+                    alt={user?.displayName}></img>
                 ) : (
                   <FaRegUserCircle className="text-3xl text-blue-800" />
                 )}
               </button>
-              <ul tabIndex={0} className="menu dropdown-content right-0">
+              <ul
+                tabIndex={0}
+                className="menu dropdown-content border right-0 bg-base-100">
                 <ul className="border rounded-t-lg">
                   <li className="px-2 py-1">
-                    name: {user?.displayName || user?.email.split("@")[0]}
+                    Name: {user?.displayName || user?.email.split("@")[0]}
                   </li>
-                  <li className="px-2 py-1">email: {user?.email}</li>
+                  <li className="px-2 py-1">Email: {user?.email}</li>
                 </ul>
                 <li className="border px-5 py-1">
                   <NavLink to="/dashboard">Dashboard</NavLink>

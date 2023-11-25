@@ -1,6 +1,7 @@
 [
   {
     "title": "A Serene Escape to Bali",
+    "type": "hill",
     "author": "Hoqe",
     "email": "hoqe@gmail.com",
     "location": "Bali, Indonesia",
@@ -9,6 +10,7 @@
   },
   {
     "title": "Discovering the Wonders of Patagonia",
+    "type": "village",
     "author": "Neamul",
     "email": "Neamul@gmail.com",
     "location": "Patagonia, Argentina",
@@ -17,6 +19,7 @@
   },
   {
     "title": "Journey Through the Enchanting Scottish Highlands",
+    "type": "hill",
     "author": "Abdullah",
     "email": "abdullah@gmail.com",
     "location": "Scottish Highlands, Scotland",

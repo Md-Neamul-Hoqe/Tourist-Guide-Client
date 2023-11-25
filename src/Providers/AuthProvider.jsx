@@ -12,6 +12,7 @@ import {
 import PropTypes from "prop-types";
 // import useAxiosHook from "../Hooks/useAxiosHook";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 export const AuthContext = createContext(null);
 
 const googleProvider = new GoogleAuthProvider();
@@ -28,6 +29,21 @@ const AuthProvider = ({ children }) => {
 
     return createUserWithEmailAndPassword(auth, email, password);
   };
+
+  const {
+    data: wishList = [],
+    isLoading: wishListLoading,
+    refetch: refetchWishList,
+  } = useQuery({
+    queryKey: ["wish-list"],
+    queryFn: async () => {
+      if (user?.email) {
+        const res = axios.get(`/wish-list/${user?.email}`);
+        return res?.data;
+      }
+      return [];
+    },
+  });
 
   const userSingIn = (email, password) => {
     setLoading(true);
@@ -95,6 +111,9 @@ const AuthProvider = ({ children }) => {
     googleSignInUser,
     error,
     setError,
+    wishList,
+    wishListLoading,
+    refetchWishList,
   };
 
   return (

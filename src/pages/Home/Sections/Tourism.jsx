@@ -1,13 +1,12 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import maxWidthStyles from "../../Shared/SectionMaxWidth";
-import { Link } from "react-router-dom";
 import { BsTelephone } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import YouTube from "react-youtube";
 import { useState } from "react";
-import TouristPackage from "../Components/TouristPackage";
+import TourPackage from "../Components/TourPackage";
 import TouristGuid from "../Components/TouristGuid";
 import { motion } from "framer-motion";
 
@@ -24,7 +23,7 @@ const Tourism = () => {
   } = useQuery({
     queryKey: ["guides"],
     queryFn: async () => {
-      const res = await axios.get("/guides.json");
+      const res = await axios.get("/role-users/guide");
       // console.log(res?.data);
       return res?.data;
     },
@@ -38,7 +37,7 @@ const Tourism = () => {
   } = useQuery({
     queryKey: ["packages"],
     queryFn: async () => {
-      const res = await axios.get("/packages.json");
+      const res = await axios.get("/packages");
       // console.log(res?.data);
       return res?.data;
     },
@@ -171,7 +170,7 @@ const Tourism = () => {
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {packages.slice(0, noOfPackages)?.map((thePackage, idx) => (
-                  <TouristPackage key={idx} thePackage={thePackage} />
+                  <TourPackage key={idx} thePackage={thePackage} />
                 ))}
               </div>
               {noOfPackages !== packages?.length ? (

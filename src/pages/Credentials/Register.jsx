@@ -1,7 +1,7 @@
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useContext } from "react";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
@@ -18,6 +18,8 @@ const Register = () => {
     reset,
   } = useForm();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state || "/";
 
   const onSubmitForm = (data) => {
     console.log(data);
@@ -35,8 +37,29 @@ const Register = () => {
 
           const userInfo = {
             name: name,
-            email: email,
+            role: "tourist",
+            profilePicture: photoURL,
+            education: "",
+            skills: "",
+            workExperience: [
+              {
+                packageType: "",
+                position: "",
+                company: "",
+                duration: "",
+              },
+            ],
+            contactDetails: {
+              email: email,
+              phone: "",
+              socialMedia: {
+                twitter: "",
+                instagram: "",
+              },
+            },
           };
+
+          console.log(userInfo);
 
           axiosPublic.post("/users", userInfo).then((res) => {
             if (res?.data?.insertedId) {
@@ -51,7 +74,7 @@ const Register = () => {
 
               reset();
 
-              navigate("/");
+              navigate(from, { replace: true });
             } else {
               Swal.fire({
                 icon: "error",
@@ -73,14 +96,34 @@ const Register = () => {
       <form onSubmit={handleSubmit(onSubmitForm)} className="card-body">
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Name</span>
+            <span className="label-text">
+              Name <span></span>
+            </span>
           </label>
           <input
             {...register("name")}
-            type="name"
+            type="text"
             placeholder="name"
             className="input input-bordered"
           />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Requested Role</span>
+          </label>
+          {/* <input
+            {...register("role", ["tourist", "guide"], { default: "tourist" })}
+            type="text"
+            placeholder="tourist"
+            className="input input-bordered"
+          /> */}
+          <select
+            name="role"
+            className="select select-bordered"
+            {...register("role", { default: "tourist" })}>
+            <option value="tourist">Tourist</option>
+            <option value="guide">Guide</option>
+          </select>
         </div>
         <div className="form-control">
           <label className="label">
@@ -93,6 +136,42 @@ const Register = () => {
             className="input input-bordered"
           />
           {errors.email && <p className="text-red-600">email is required.</p>}
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Phone</span>
+          </label>
+          <input
+            {...register("phone", { required: true })}
+            type="tel"
+            placeholder="phone number"
+            className="input input-bordered"
+          />
+          {errors.phone && (
+            <p className="text-red-600">phone number is required.</p>
+          )}
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Twitter</span>
+          </label>
+          <input
+            {...register("twitter")}
+            type="text"
+            placeholder="Twitter"
+            className="input input-bordered"
+          />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Instagram</span>
+          </label>
+          <input
+            {...register("instagram")}
+            type="text"
+            placeholder="Instagram"
+            className="input input-bordered"
+          />
         </div>
         <div className="form-control">
           <label className="label">
