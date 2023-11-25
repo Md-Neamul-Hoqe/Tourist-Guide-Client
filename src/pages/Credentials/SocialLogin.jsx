@@ -15,28 +15,35 @@ const SocialLogin = () => {
     // console.log("object");
 
     googleSignInUser()
-      .then((res) => {
-        // console.log(res);
+      .then(({ user }) => {
+        console.log("Firebase result: ", user);
+
         const userInfo = {
-          email: res?.user?.email,
-          name: res?.user?.displayName,
+          name: user?.displayName,
+          role: "tourist",
+          profilePicture: user?.photoURL,
+          contactDetails: {
+            email: user?.email,
+            phone: user?.phoneNumber,
+          },
+          from: user?.metadata?.creationTime || new Date(),
         };
 
         axios
           .post("/users", userInfo)
-          .then((result) => {
-            // console.log(result);
+          .then(({ data }) => {
+            console.log("Database result: ", data);
 
-            result?.data?.message
+            data?.message
               ? setTimeout(() => {
                   Swal.fire({
                     icon: "success",
-                    title: result?.data?.message,
+                    title: data?.message,
                     showConfirmButton: false,
                     timer: 1500,
                   });
                 }, 1000)
-              : !res?.insertedId &&
+              : !data?.insertedId &&
                 Swal.fire({
                   icon: "success",
                   title: "User profile updated successfully.",

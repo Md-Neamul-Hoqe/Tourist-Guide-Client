@@ -1,16 +1,14 @@
-import { AuthContext } from "../../Providers/AuthProvider";
-import { useContext } from "react";
-
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import SocialLogin from "./SocialLogin";
+import useAuth from "../../Hooks/useAuth";
 
 const Register = () => {
   const axiosPublic = useAxiosPublic();
-  const { createUser, updateUserProfileImage } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useAuth();
   const {
     register,
     handleSubmit,
@@ -23,38 +21,42 @@ const Register = () => {
 
   const onSubmitForm = (data) => {
     console.log(data);
-    const { email, password, name, photoURL } = data;
-
+    const {
+      email,
+      password,
+      name: displayName,
+      photoURL,
+      experiences,
+      skills,
+      education,
+      phone,
+      twitter,
+      instagram,
+    } = data;
+    // https://i.ibb.co/WFhJcTx/user-3.png
     console.log({ email, password, name, photoURL });
 
     createUser(email, password).then((res) => {
       const loggedUser = res?.user;
 
       console.log(loggedUser);
-      updateUserProfileImage(email, photoURL)
-        .then((res) => {
-          console.log(res);
+      updateUserProfile(displayName, photoURL)
+        .then(({ data }) => {
+          console.log(data);
 
           const userInfo = {
-            name: name,
+            name: displayName,
             role: "tourist",
             profilePicture: photoURL,
-            education: "",
-            skills: "",
-            workExperience: [
-              {
-                packageType: "",
-                position: "",
-                company: "",
-                duration: "",
-              },
-            ],
+            education: education,
+            skills: skills,
+            workExperience: experiences,
             contactDetails: {
               email: email,
-              phone: "",
+              phone: phone,
               socialMedia: {
-                twitter: "",
-                instagram: "",
+                twitter: twitter,
+                instagram: instagram,
               },
             },
           };
@@ -86,6 +88,7 @@ const Register = () => {
           });
         })
         .catch((error) => console.log(error));
+
       // console.log(res, loggedUser);
     });
   };
@@ -158,7 +161,7 @@ const Register = () => {
           <input
             {...register("twitter")}
             type="text"
-            placeholder="Twitter"
+            placeholder="@username"
             className="input input-bordered"
           />
         </div>
@@ -169,7 +172,40 @@ const Register = () => {
           <input
             {...register("instagram")}
             type="text"
-            placeholder="Instagram"
+            placeholder="@username"
+            className="input input-bordered"
+          />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Skills</span>
+          </label>
+          <textarea
+            {...register("skills")}
+            type="text"
+            placeholder="Skills..."
+            className="input input-bordered"
+          />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Education</span>
+          </label>
+          <textarea
+            {...register("education")}
+            type="text"
+            placeholder="Education..."
+            className="input input-bordered"
+          />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Experience</span>
+          </label>
+          <textarea
+            {...register("experiences")}
+            type="text"
+            placeholder="Experiences..."
             className="input input-bordered"
           />
         </div>

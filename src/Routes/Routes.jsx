@@ -13,6 +13,11 @@ import PackagesAsType from "../pages/PackagesAsType/PackagesAsType";
 import Story from "../pages/Story/Story";
 import Dashboard from "../Layouts/Dashboard";
 import AdminProfile from "../pages/AdminProfile/AdminProfile";
+import Bookings from "../pages/TouristProfile/Sections/Bookings/Bookings";
+import Wishlist from "../pages/AdminProfile/Sections/Wishlist/Wishlist";
+import ManageUsers from "../pages/AdminProfile/Sections/ManageUsers/ManageUsers";
+import DashboardAuth from "../Providers/DashboardAuth";
+import AllStories from "../pages/AllStories/AllStories";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +54,10 @@ export const router = createBrowserRouter([
         element: <PackagesAsType />,
       },
       {
+        path: "user/stories",
+        element: <AllStories />,
+      },
+      {
         path: "user/story/:id",
         element: <Story />,
       },
@@ -70,7 +79,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <DashboardAuth>
+        <Dashboard />
+      </DashboardAuth>
+    ),
     children: [
       {
         path: "admin-profile",
@@ -78,10 +91,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "all-users",
+        element: <ManageUsers />,
       },
       {
         path: "tourist-profile",
         element: <TouristProfile />,
+      },
+      {
+        path: "bookings",
+        element: <Bookings />,
+      },
+      {
+        path: "wishlist",
+        element: <Wishlist />,
       },
       {
         path: "guide-profile",

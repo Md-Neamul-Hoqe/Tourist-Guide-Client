@@ -4,10 +4,13 @@ import logo from "/Vector.svg";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import maxWidthStyles from "./SectionMaxWidth";
+import useRole from "../../Hooks/useRole";
 
 const Navbar = () => {
   const { user, userSignOut } = useAuth();
+  const [whichRole, whichRoleLoading, isPending] = useRole();
 
+  console.log(whichRole, user);
   const navLinks = (
     <>
       <li>
@@ -73,12 +76,12 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>
         <div className="navbar-end">
-          {user ? (
+          {!isPending && !whichRoleLoading && user?.email && whichRole ? (
             <div className="dropdown max-w-[40vw]">
-              <button tabIndex={0}>
+              <button tabIndex={0} className="avatar w-12">
                 {user?.photoURL ? (
                   <img
-                    className="w-12"
+                    className="rounded-full"
                     src={user?.photoURL}
                     alt={user?.displayName}></img>
                 ) : (
@@ -87,7 +90,7 @@ const Navbar = () => {
               </button>
               <ul
                 tabIndex={0}
-                className="menu dropdown-content border right-0 bg-base-100">
+                className="menu dropdown-content border right-0 bg-base-100 z-[2]">
                 <ul className="border rounded-t-lg">
                   <li className="px-2 py-1">
                     Name: {user?.displayName || user?.email.split("@")[0]}
@@ -95,7 +98,16 @@ const Navbar = () => {
                   <li className="px-2 py-1">Email: {user?.email}</li>
                 </ul>
                 <li className="border px-5 py-1">
-                  <NavLink to="/dashboard">Dashboard</NavLink>
+                  <NavLink
+                    to={`/dashboard/${
+                      whichRole === "admin"
+                        ? "admin-profile"
+                        : whichRole === "guide"
+                        ? "guide-profile"
+                        : "tourist-profile"
+                    }`}>
+                    Dashboard
+                  </NavLink>
                 </li>
                 <li className="border px-5 py-1 last-of-type:rounded-b-md">
                   <button onClick={handleLogOut}>Log Out</button>

@@ -5,16 +5,19 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import useWishList from "../../../Hooks/useWishList";
 
 const TourPackage = ({ thePackage }) => {
-  const { user, wishList, refetchWishList } = useAuth();
-  const axios = useAxiosPublic();
   const [inWishList, setInWishList] = useState(false);
+  const { user } = useAuth();
+  const axios = useAxiosPublic();
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [wishList, wishListLoading, refetchWishList] = useWishList() || [];
+
   const wishListLength = wishList?.length;
-  if (wishListLength)
+  if (!wishListLoading && wishListLength)
     for (let index = 0; index < wishListLength; index++) {
       if (wishList[index]?.package_id === thePackage?._id) {
         console.log(wishList[index]?.package_id, thePackage?._id);

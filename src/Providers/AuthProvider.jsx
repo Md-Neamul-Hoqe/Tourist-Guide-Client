@@ -10,9 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import PropTypes from "prop-types";
-// import useAxiosHook from "../Hooks/useAxiosHook";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
 export const AuthContext = createContext(null);
 
 const googleProvider = new GoogleAuthProvider();
@@ -29,21 +27,6 @@ const AuthProvider = ({ children }) => {
 
     return createUserWithEmailAndPassword(auth, email, password);
   };
-
-  const {
-    data: wishList = [],
-    isLoading: wishListLoading,
-    refetch: refetchWishList,
-  } = useQuery({
-    queryKey: [user?.email ? `${user.email}, "wish-list"` : "wish-list"],
-    queryFn: async () => {
-      if (user?.email) {
-        const res = axios.get(`/wish-list/${user?.email}`);
-        return res?.data;
-      }
-      return [];
-    },
-  });
 
   const userSingIn = (email, password) => {
     setLoading(true);
@@ -91,7 +74,7 @@ const AuthProvider = ({ children }) => {
     };
   }, [axios]);
 
-  const updateUserProfileImage = (name, photoUrl) => {
+  const updateUserProfile = (name, photoUrl) => {
     setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
@@ -106,14 +89,11 @@ const AuthProvider = ({ children }) => {
     setLoading,
     createUser,
     userSingIn,
-    updateUserProfileImage,
+     updateUserProfile,
     userSignOut,
     googleSignInUser,
     error,
     setError,
-    wishList,
-    wishListLoading,
-    refetchWishList,
   };
 
   return (

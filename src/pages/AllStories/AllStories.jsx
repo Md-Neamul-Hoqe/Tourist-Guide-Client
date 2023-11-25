@@ -1,30 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
-// import { useKeenSlider } from "keen-slider/react"
-// import "keen-slider/keen-slider.min.css"
 
-const Stories = () => {
+const AllStories = () => {
   const axios = useAxiosPublic();
 
   const { data: stories = [], isLoading } = useQuery({
     queryKey: ["stories"],
     queryFn: async () => {
-      /* Get stories */
-      const res = await axios.get("/user/stories?max=3");
-
-      /* Get The package thumbnail using the id stored in story packageId */
-
-      /* form a new array of object including the thumb */
-
-      /* return the new array */
-      return res?.data;
+      const { data } = await axios.get("/user/stories");
+      return data;
     },
   });
-
   return (
-    <div className="text-center pb-10">
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 pb-20">
+    <div>
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 p-20">
         {!isLoading &&
           stories?.map((story, idx) => {
             return (
@@ -46,13 +36,8 @@ const Stories = () => {
             );
           })}
       </div>
-      <div>
-        <Link to={`user/stories`} className="btn bg-blue-700 text-white">
-          See All Stories
-        </Link>
-      </div>
     </div>
   );
 };
 
-export default Stories;
+export default AllStories;
