@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
     isLoading: wishListLoading,
     refetch: refetchWishList,
   } = useQuery({
-    queryKey: ["wish-list"],
+    queryKey: [user?.email ? `${user.email}, "wish-list"` : "wish-list"],
     queryFn: async () => {
       if (user?.email) {
         const res = axios.get(`/wish-list/${user?.email}`);

@@ -11,6 +11,8 @@ import TourGuideProfile from "../pages/TourGuideProfile/TourGuideProfile";
 import TouristProfile from "../pages/TouristProfile/TouristProfile";
 import PackagesAsType from "../pages/PackagesAsType/PackagesAsType";
 import Story from "../pages/Story/Story";
+import Dashboard from "../Layouts/Dashboard";
+import AdminProfile from "../pages/AdminProfile/AdminProfile";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +65,27 @@ export const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "admin-profile",
+        element: <AdminProfile />,
+      },
+      {
+        path: "all-users",
+      },
+      {
+        path: "tourist-profile",
+        element: <TouristProfile />,
+      },
+      {
+        path: "guide-profile",
+        element: <TourGuideProfile />,
       },
     ],
   },
