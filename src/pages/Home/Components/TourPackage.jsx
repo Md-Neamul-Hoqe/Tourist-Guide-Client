@@ -49,6 +49,7 @@ const TourPackage = ({ thePackage }) => {
   // console.log(thePackage);
 
   const handleWishList = (id) => {
+    console.log("Will be added", id);
     if (!user?.email) {
       return navigate("/credentials/login", { state: location?.pathname });
     }

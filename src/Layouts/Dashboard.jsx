@@ -30,7 +30,7 @@ const Dashboard = () => {
       whichRoleLoading ? (
         "Loading..."
       ) : (
-        <aside className="w-64 min-h-full bg-orange-400 capitalize">
+        <aside className="w-64 min-h-full bg-blue-400 text-white capitalize">
           <div className="sticky">
             <ul className="menu p-4 sticky">
               {whichRole === "admin" ? (
@@ -74,12 +74,12 @@ const Dashboard = () => {
                       wishlist
                     </NavLink>
                   </li>
-                  <li style={{ fontVariantCaps: "small-caps" }}>
+                  {/* <li style={{ fontVariantCaps: "small-caps" }}>
                     <NavLink to="/dashboard/cart">
                       <FaShoppingCart />
                       My Cart
                     </NavLink>
-                  </li>
+                  </li> */}
                 </>
               ) : (
                 <>
@@ -92,7 +92,7 @@ const Dashboard = () => {
                   <li style={{ fontVariantCaps: "small-caps" }}>
                     <NavLink to="/dashboard/trips">
                       <FaCalendarAlt />
-                      Trips
+                      Assigned Trips
                     </NavLink>
                   </li>
                 </>

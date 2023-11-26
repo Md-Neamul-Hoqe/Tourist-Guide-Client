@@ -20,6 +20,7 @@ import DashboardAuth from "../Providers/DashboardAuth";
 import AllStories from "../pages/AllStories/AllStories";
 import AddPackage from "../pages/AdminProfile/Sections/AddPackage/AddPackage";
 import Packages from "../pages/Packages/Packages";
+import AssignedTrips from "../pages/TourGuideProfile/Sections/AssignedTrips";
 
 export const router = createBrowserRouter([
   {
@@ -126,6 +127,10 @@ export const router = createBrowserRouter([
       {
         path: "guide-profile/:id",
         element: <TourGuideProfile />,
+      },
+      {
+        path: "trips",
+        element: <AssignedTrips />,
       },
     ],
   },

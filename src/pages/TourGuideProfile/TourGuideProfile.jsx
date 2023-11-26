@@ -105,7 +105,7 @@ const TourGuideProfile = () => {
       <section>
         {!isLoadingReviews ? (
           <div>
-            <h2>Tourist Reviews</h2>
+            <h2 className="font-semibold">Tourist Reviews</h2>
             <div className="flex gap-3">
               <Rating
                 {...register("ratings")}
