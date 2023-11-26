@@ -11,8 +11,8 @@ const TouristProfile = () => {
         "Loading..."
       ) : (
         <div className="card lg:card-side card-bordered rounded-lg">
-          <figure className="p-10 border">
-            <img src={userProfile?.profilePicture} alt="Album" />
+          <figure className="p-10 border drop-shadow-2xl">
+            <img className="w-32" src={userProfile?.profilePicture} alt="Album" />
           </figure>
           <div className="card-body gap-0">
             <h2 className="card-title">

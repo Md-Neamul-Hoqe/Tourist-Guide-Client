@@ -9,9 +9,9 @@ import { useState } from "react";
 import TourPackage from "../Components/TourPackage";
 import TouristGuid from "../Components/TouristGuid";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Tourism = () => {
-  const [noOfPackages, setNoOfPackages] = useState(4);
   const [noOfGuides, setNoOfGuides] = useState(4);
   const axios = useAxiosPublic();
 
@@ -37,7 +37,7 @@ const Tourism = () => {
   } = useQuery({
     queryKey: ["packages"],
     queryFn: async () => {
-      const res = await axios.get("/packages");
+      const res = await axios.get("/packages?max=4");
       // console.log(res?.data);
       return res?.data;
     },
@@ -169,19 +169,15 @@ const Tourism = () => {
           ) : packages?.length ? (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {packages.slice(0, noOfPackages)?.map((thePackage, idx) => (
+                {packages?.map((thePackage, idx) => (
                   <TourPackage key={idx} thePackage={thePackage} />
                 ))}
               </div>
-              {noOfPackages !== packages?.length ? (
                 <div className="w-full my-10">
-                  <button
-                    className="btn bg-blue-700 text-white"
-                    onClick={() => setNoOfPackages(packages?.length)}>
+                  <Link to={`/packages`} className="btn bg-blue-700 text-white">
                     All Packages
-                  </button>
+                  </Link>
                 </div>
-              ) : null}
             </>
           ) : null}
 

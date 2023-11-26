@@ -14,7 +14,7 @@ const PackageDetails = () => {
       return res?.data;
     },
   });
-  return <div>{tourPackage?.title}</div>;
+  return !isLoading && <div>{tourPackage?.title}</div>;
 };
 
 export default PackageDetails;

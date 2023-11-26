@@ -31,7 +31,7 @@ const TourGuideProfile = () => {
     0
   );
   const averageRating = reviews?.length ? totalRating / reviews?.length : 0;
-  
+
   const { register, reset, handleSubmit } = useForm();
 
   const { data: tourGuide = {}, isLoading } = useQuery({

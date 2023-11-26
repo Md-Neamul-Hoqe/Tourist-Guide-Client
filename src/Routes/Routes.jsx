@@ -19,6 +19,7 @@ import ManageUsers from "../pages/AdminProfile/Sections/ManageUsers/ManageUsers"
 import DashboardAuth from "../Providers/DashboardAuth";
 import AllStories from "../pages/AllStories/AllStories";
 import AddPackage from "../pages/AdminProfile/Sections/AddPackage/AddPackage";
+import Packages from "../pages/Packages/Packages";
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ export const router = createBrowserRouter([
       {
         path: "packages/:type",
         element: <PackagesAsType />,
+      },
+      {
+        path: "packages",
+        element: <Packages />,
       },
       {
         path: "user/stories",

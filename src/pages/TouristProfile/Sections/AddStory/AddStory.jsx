@@ -58,7 +58,8 @@ const AddStory = () => {
   };
 
   return (
-    <div>
+    <div className="py-5">
+      <h3 className="text-2xl font-mono font-semibold text-center">Write a Story about your tour</h3>
       <form onSubmit={handleSubmit(onSubmitForm)} className="card-body">
         <div className="form-control">
           <label className="label">
@@ -114,7 +115,7 @@ const AddStory = () => {
         </div>
         <div className="form-control mt-6">
           <button type="submit" className="btn btn-primary">
-            Login
+            Add Story
           </button>
         </div>
       </form>

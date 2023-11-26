@@ -40,7 +40,7 @@ const AddPackage = () => {
       thumbnail: thumbnailURL,
     };
 
-    axios.post("/users", packageInfo).then((res) => {
+    axios.post("/add-packages", packageInfo).then((res) => {
       if (res?.data?.insertedId) {
         // console.log("User photo updated.");
 
@@ -55,7 +55,7 @@ const AddPackage = () => {
       } else {
         Swal.fire({
           icon: "error",
-          title: `Database error: ${res?.data}.`,
+          title: `Can't added.`,
           showConfirmButton: false,
           timer: 1500,
         });
@@ -72,22 +72,24 @@ const AddPackage = () => {
             <span className="label-text">Type</span>
           </label>
           <input
-            {...register("type")}
+            {...register("type", { required: true })}
             type="text"
             placeholder="Type"
             className="input input-bordered"
           />
+          {errors.type && <p className="text-red-600">type is required.</p>}
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Title</span>
           </label>
           <input
-            {...register("title")}
+            {...register("title", { required: true })}
             type="text"
             placeholder="Title"
             className="input input-bordered"
           />
+          {errors.title && <p className="text-red-600">title is required.</p>}
         </div>
         <div className="form-control">
           <label className="label">
@@ -140,6 +142,7 @@ const AddPackage = () => {
             Add Package
           </button>
         </div>
+        {/* {errors ? <p>{errors}</p> : null} */}
       </form>
 
       <Helmet>
@@ -167,7 +170,7 @@ const UploadImages = (fileList) => {
             reject(error);
             Swal.fire({
               icon: "warning",
-              title: error.message,
+              title: error?.message,
               showConfirmButton: false,
               timer: 2000,
             });

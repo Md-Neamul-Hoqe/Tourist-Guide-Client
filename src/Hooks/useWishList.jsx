@@ -4,27 +4,30 @@ import { useQuery } from "@tanstack/react-query";
 
 const useWishList = () => {
   const axios = useAxiosPublic();
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
 
   // if (!user?.email) return;
 
   const {
     data: wishList = [],
     isLoading: wishListLoading,
+    isPaused: wishListPaused,
     refetch: refetchWishList,
   } = useQuery({
+    enabled: !!user?.email,
     queryKey: [user?.email, "wish-list"],
-    enabled: !loading,
     queryFn: async () => {
       if (user?.email) {
-        const res = axios.get(`/wish-list/${user?.email}`);
+        const res = await axios.get(`/wish-list/${user?.email}`);
+        console.log(res?.data);
+
         return res?.data;
       }
       return [];
     },
   });
 
-  return [wishList, wishListLoading, refetchWishList];
+  return [wishList, wishListLoading, wishListPaused, refetchWishList];
 };
 
 export default useWishList;

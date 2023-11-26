@@ -10,7 +10,6 @@ const Navbar = () => {
   const { user, userSignOut } = useAuth();
   const [whichRole, whichRoleLoading, isPending] = useRole();
 
-  console.log(whichRole, user);
   const navLinks = (
     <>
       <li>
