@@ -85,18 +85,6 @@ const Dashboard = () => {
                       My Cart
                     </NavLink>
                   </li>
-                  <li style={{ fontVariantCaps: "small-caps" }}>
-                    <NavLink to="/dashboard/add-review">
-                      <FaCommentDots />
-                      Add Review
-                    </NavLink>
-                  </li>
-                  <li style={{ fontVariantCaps: "small-caps" }}>
-                    <NavLink to="/dashboard/bookings">
-                      <FaBookmark />
-                      My Bookings
-                    </NavLink>
-                  </li>
                 </>
               ) : (
                 <>
@@ -124,19 +112,19 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li style={{ fontVariantCaps: "small-caps" }}>
-                <NavLink to="/our-menu">
-                  <FaList />
-                  Menu
+                <NavLink to="/community">
+                  <FaEnvelope />
+                  Community
                 </NavLink>
               </li>
               <li style={{ fontVariantCaps: "small-caps" }}>
-                <NavLink to="/our-shop/salad">
-                  <FaShoppingBag />
-                  Shop
+                <NavLink to="/blogs">
+                  <FaEnvelope />
+                  Blogs
                 </NavLink>
               </li>
               <li style={{ fontVariantCaps: "small-caps" }}>
-                <NavLink to="/our-shop/salad">
+                <NavLink to="/contact-us">
                   <FaEnvelope />
                   Contact
                 </NavLink>

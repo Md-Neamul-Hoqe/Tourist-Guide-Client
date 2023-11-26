@@ -6,6 +6,7 @@ import { router } from "./Routes/Routes";
 import { HelmetProvider } from "react-helmet-async";
 import AuthProvider from "./Providers/AuthProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import "@smastrom/react-rating/style.css";
 
 const queryClient = new QueryClient();
 

@@ -1,6 +1,8 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import { FaShareAlt } from "react-icons/fa";
+import { FacebookIcon, FacebookShareButton } from "react-share";
 
 const Story = () => {
   const { id } = useParams();
@@ -32,8 +34,18 @@ const Story = () => {
               <small>Location: {story?.location} </small>
               <small>Post: {story?.date}</small>
             </div>
-            <hr className="my-5"/>
+            <hr className="my-5" />
             <p className="text-justify">{story?.story.slice(0, 100) + "..."}</p>
+            <div className="absolute right-10 bottom-10">
+              <FacebookShareButton
+                url={"shareUrl"}
+                className="Demo__some-network__share-button">
+                <FacebookIcon size={32} round />
+              </FacebookShareButton>
+              {/* <button className="btn btn-lg border-blue-700 btn-circle text-blue-700">
+                <FaShareAlt />
+              </button> */}
+            </div>
           </div>
         </div>
       ) : (

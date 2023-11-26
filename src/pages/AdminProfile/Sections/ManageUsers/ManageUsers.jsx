@@ -17,14 +17,14 @@ const ManageUsers = () => {
     queryKey: ["all-users"],
     queryFn: async () => {
       const res = await axios.get(`/users`);
-      console.log(res?.data);
+      //   console.log(res?.data);
 
       return res?.data;
     },
   });
 
   const handleUserRole = (id, userRole) => {
-    console.log(id, userRole);
+    // console.log(id, userRole);
     try {
       axios.put(`/update-user/${id}`, { role: userRole }).then((res) => {
         if (res?.data?.modifiedCount) {
@@ -49,7 +49,7 @@ const ManageUsers = () => {
   };
 
   const handleRemoveUser = (id) => {
-    console.log(id);
+    // console.log(id);
     try {
       axios.delete(`/users/${id}`).then((response) => {
         if (response?.data?.deletedCount) {

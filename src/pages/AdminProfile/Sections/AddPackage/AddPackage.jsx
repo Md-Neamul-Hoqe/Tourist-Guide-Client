@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
-import useUploadImages from "../../../../Hooks/useUploadImages";
 const image_upload_key = import.meta.env.VITE_image_upload_key;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_upload_key}`;
 
@@ -21,14 +20,16 @@ const AddPackage = () => {
     console.log(images);
     const imageURLs = UploadImages(images);
 
-    console.log({
-      type,
-      title,
-      price,
-      description,
-      images,
-      thumbnail,
-    });
+    const thumbnailURL = UploadImages(thumbnail);
+
+    // console.log({
+    //   type,
+    //   title,
+    //   price,
+    //   description,
+    //   images,
+    //   thumbnail,
+    // });
 
     const packageInfo = {
       type,
@@ -36,30 +37,30 @@ const AddPackage = () => {
       price,
       description,
       images: imageURLs,
-      thumbnail,
+      thumbnail: thumbnailURL,
     };
 
-    // axios.post("/users", packageInfo).then((res) => {
-    //     if (res?.data?.insertedId) {
-    //       // console.log("User photo updated.");
+    axios.post("/users", packageInfo).then((res) => {
+      if (res?.data?.insertedId) {
+        // console.log("User photo updated.");
 
-    //       Swal.fire({
-    //         icon: "success",
-    //         title: "User profile updated successfully.",
-    //         showConfirmButton: false,
-    //         timer: 1500,
-    //       });
+        Swal.fire({
+          icon: "success",
+          title: "User profile updated successfully.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
 
-    //       reset();
-    //     } else {
-    //       Swal.fire({
-    //         icon: "error",
-    //         title: `Database error: ${res?.data}.`,
-    //         showConfirmButton: false,
-    //         timer: 1500,
-    //       });
-    //     }
-    //   });
+        reset();
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: `Database error: ${res?.data}.`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   };
 
   return (

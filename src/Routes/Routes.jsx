@@ -62,6 +62,10 @@ export const router = createBrowserRouter([
         path: "user/story/:id",
         element: <Story />,
       },
+      {
+        path: "contact-us",
+        element: <ContactUs />,
+      },
     ],
   },
   {
