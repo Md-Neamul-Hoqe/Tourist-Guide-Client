@@ -18,6 +18,7 @@ import Wishlist from "../pages/AdminProfile/Sections/Wishlist/Wishlist";
 import ManageUsers from "../pages/AdminProfile/Sections/ManageUsers/ManageUsers";
 import DashboardAuth from "../Providers/DashboardAuth";
 import AllStories from "../pages/AllStories/AllStories";
+import AddPackage from "../pages/AdminProfile/Sections/AddPackage/AddPackage";
 
 export const router = createBrowserRouter([
   {
@@ -94,6 +95,12 @@ export const router = createBrowserRouter([
         element: <ManageUsers />,
       },
       {
+        path: "add-package",
+        element: <AddPackage />,
+      },
+
+      /* User Profile */
+      {
         path: "tourist-profile",
         element: <TouristProfile />,
       },
@@ -105,6 +112,8 @@ export const router = createBrowserRouter([
         path: "wishlist",
         element: <Wishlist />,
       },
+
+      /* Guide Profile */
       {
         path: "guide-profile",
         element: <TourGuideProfile />,

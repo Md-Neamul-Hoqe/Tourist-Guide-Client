@@ -9,9 +9,9 @@ const TouristGuid = ({ guide }) => {
       </figure>
       <div className="card-body text-start">
         <h2 className="card-title">{guide?.name}</h2>
-        <p>Phone: {guide?.contactDetails?.phone}</p>
-        <p>Education: {guide?.education}</p>
-        <p>Skills: {guide?.skills.toString()}</p>
+        <p>Phone: {guide?.contactDetails?.phone || 'Not allowed'}</p>
+        <p>Education: {guide?.education || 'Not allowed'}</p>
+        <p>Skills: {guide?.skills.toString() || 'Not allowed'}</p>
         <div className="card-actions justify-end">
           <Link
             to={`/user/guides/${guide?._id}`}

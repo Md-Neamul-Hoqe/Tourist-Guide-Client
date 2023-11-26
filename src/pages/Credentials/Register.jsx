@@ -30,6 +30,7 @@ const Register = () => {
       skills,
       education,
       phone,
+      location,
       twitter,
       instagram,
     } = data;
@@ -41,22 +42,21 @@ const Register = () => {
 
       console.log(loggedUser);
       updateUserProfile(displayName, photoURL)
-        .then(({ data }) => {
-          console.log(data);
-
+        .then(() => {
           const userInfo = {
             name: displayName,
             role: "tourist",
             profilePicture: photoURL,
             education: education,
-            skills: skills,
-            workExperience: experiences,
+            skills: skills.split(","),
+            workExperience: experiences.split(","),
             contactDetails: {
-              email: email,
-              phone: phone,
+              email,
+              phone,
+              location,
               socialMedia: {
-                twitter: twitter,
-                instagram: instagram,
+                twitter,
+                instagram,
               },
             },
           };
@@ -130,7 +130,20 @@ const Register = () => {
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Email</span>
+            <span className="label-text">Location</span>
+          </label>
+          <input
+            {...register("location")}
+            type="text"
+            placeholder="Location"
+            className="input input-bordered"
+          />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">
+              Email <span className="text-error">*</span>
+            </span>
           </label>
           <input
             {...register("email", { required: true })}
@@ -142,7 +155,9 @@ const Register = () => {
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Phone</span>
+            <span className="label-text">
+              Phone <span className="text-error">*</span>
+            </span>
           </label>
           <input
             {...register("phone", { required: true })}
@@ -211,7 +226,9 @@ const Register = () => {
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Password</span>
+            <span className="label-text">
+              Password<span className="text-error">*</span>
+            </span>
           </label>
           <input
             {...register("password", {

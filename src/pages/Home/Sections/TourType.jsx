@@ -1,5 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
 import useTypes from "../../../Hooks/useTypes";
 

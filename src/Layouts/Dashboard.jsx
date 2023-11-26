@@ -53,21 +53,9 @@ const Dashboard = () => {
                     </NavLink>
                   </li>
                   <li style={{ fontVariantCaps: "small-caps" }}>
-                    <NavLink to="/dashboard/manage-packages">
-                      <FaList />
-                      Manage Packages
-                    </NavLink>
-                  </li>
-                  <li style={{ fontVariantCaps: "small-caps" }}>
-                    <NavLink to="/dashboard/manage-bookings">
-                      <FaBook />
-                      Manage Tours
-                    </NavLink>
-                  </li>
-                  <li style={{ fontVariantCaps: "small-caps" }}>
                     <NavLink to="/dashboard/all-users">
-                      <FaUsers />
-                      All Users
+                      <FaList />
+                      Manage Users
                     </NavLink>
                   </li>
                 </>
