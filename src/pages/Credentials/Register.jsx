@@ -87,7 +87,15 @@ const Register = () => {
             }
           });
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log(error);
+          Swal.fire({
+            icon: "warning",
+            title: error.message,
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        });
 
       // console.log(res, loggedUser);
     });

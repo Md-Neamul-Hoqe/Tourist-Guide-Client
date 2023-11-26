@@ -61,7 +61,15 @@ const SocialLogin = () => {
             })
           );
       })
-      .catch((error) => setError(error));
+      .catch((error) => {
+        setError(error);
+        Swal.fire({
+          icon: "warning",
+          title: error.message,
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      });
   };
 
   return (

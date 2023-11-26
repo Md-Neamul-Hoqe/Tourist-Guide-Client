@@ -119,7 +119,7 @@ export const router = createBrowserRouter([
 
       /* Guide Profile */
       {
-        path: "guide-profile",
+        path: "guide-profile/:id",
         element: <TourGuideProfile />,
       },
     ],

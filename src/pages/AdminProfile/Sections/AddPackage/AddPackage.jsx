@@ -165,6 +165,12 @@ const UploadImages = (fileList) => {
           })
           .catch((error) => {
             reject(error);
+            Swal.fire({
+              icon: "warning",
+              title: error.message,
+              showConfirmButton: false,
+              timer: 2000,
+            });
           });
       };
 

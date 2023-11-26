@@ -26,6 +26,12 @@ const TourGuideProfile = () => {
     },
   });
 
+  const totalRating = reviews?.reduce(
+    (total, currentValue) => total + currentValue?.rating,
+    0
+  );
+  const averageRating = reviews?.length ? totalRating / reviews?.length : 0;
+  
   const { register, reset, handleSubmit } = useForm();
 
   const { data: tourGuide = {}, isLoading } = useQuery({
@@ -39,10 +45,10 @@ const TourGuideProfile = () => {
 
   const onSubmitForm = (data) => {
     console.log(data);
-    const { review, ratings, title } = data;
+    const { review, title } = data;
 
     const saveReview = {
-      ratings,
+      rating,
       title,
       review,
       user,
@@ -60,10 +66,17 @@ const TourGuideProfile = () => {
 
           refetchReviews();
           reset();
+          setRating(0);
         }
       });
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "warning",
+        title: error.message,
+        showConfirmButton: false,
+        timer: 2000,
+      });
     }
   };
   return (
@@ -97,7 +110,8 @@ const TourGuideProfile = () => {
               <Rating
                 {...register("ratings")}
                 style={{ maxWidth: 100 }}
-                value={4}
+                value={averageRating}
+                halfFillMode="svg"
                 itemStyles={{
                   itemShapes: RoundedStar,
                   activeFillColor: "#000000",
@@ -112,7 +126,8 @@ const TourGuideProfile = () => {
           </div>
         ) : null}
       </section>
-      <section className={`my-10 ${tourGuide?._id === id ? "hidden" : ""}`}>
+      <section
+        className={`my-10 ${tourGuide?.email === user?.email ? "hidden" : ""}`}>
         <h3 className="text-xl font-semibold font-mono">
           Review as {user?.email}
         </h3>

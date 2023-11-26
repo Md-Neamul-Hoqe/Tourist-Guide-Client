@@ -1,15 +1,10 @@
 import {
-  FaBook,
-  FaBookmark,
   FaCalendarAlt,
   FaCcPaypal,
-  FaCommentDots,
   FaEnvelope,
   FaHome,
   FaList,
-  FaShoppingBag,
   FaShoppingCart,
-  FaUsers,
   FaUtensils,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
