@@ -12,7 +12,7 @@ const AdminProfile = () => {
           <figure className="p-10 border max-w-xs">
             <img
               src={userProfile?.profilePicture}
-              alt="Album"
+              alt={userProfile?.name}
             />
           </figure>
           <div className="card-body gap-0">

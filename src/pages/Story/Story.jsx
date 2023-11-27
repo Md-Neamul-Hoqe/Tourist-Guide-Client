@@ -1,13 +1,14 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import { FaShareAlt } from "react-icons/fa";
 import { FacebookIcon, FacebookShareButton } from "react-share";
 
 const Story = () => {
   const { id } = useParams();
   console.log(id);
   const axios = useAxiosPublic();
+
+  // console.log(location);
 
   const { data: story = {}, isLoading } = useQuery({
     queryKey: ["story"],
@@ -38,13 +39,10 @@ const Story = () => {
             <p className="text-justify">{story?.story.slice(0, 100) + "..."}</p>
             <div className="absolute right-10 bottom-10">
               <FacebookShareButton
-                url={"shareUrl"}
+                url={window?.location?.href}
                 className="Demo__some-network__share-button">
-                <FacebookIcon size={32} round />
+                <FacebookIcon size={40} round />
               </FacebookShareButton>
-              {/* <button className="btn btn-lg border-blue-700 btn-circle text-blue-700">
-                <FaShareAlt />
-              </button> */}
             </div>
           </div>
         </div>

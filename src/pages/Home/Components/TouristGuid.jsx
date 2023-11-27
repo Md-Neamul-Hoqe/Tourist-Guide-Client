@@ -5,7 +5,7 @@ const TouristGuid = ({ guide }) => {
   return (
     <div className="card lg:card-side bg-base-100 shadow-xl">
       <figure className="w-32 md:max-w-sm">
-        <img className="w-full" src={guide?.profilePicture} alt="Album" />
+        <img className="w-full" src={guide?.profilePicture} alt={guide?.name} />
       </figure>
       <div className="card-body text-start">
         <h2 className="card-title">{guide?.name}</h2>

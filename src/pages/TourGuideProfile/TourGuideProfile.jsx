@@ -88,7 +88,7 @@ const TourGuideProfile = () => {
               <img
                 className="w-full"
                 src={tourGuide?.profilePicture}
-                alt="Album"
+                alt={tourGuide?.name}
               />
             </figure>
             <div className="card-body text-start">

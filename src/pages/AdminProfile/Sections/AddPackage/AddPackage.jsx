@@ -14,7 +14,7 @@ const AddPackage = () => {
     reset,
   } = useForm();
 
-  const onSubmitForm = async (data) => {
+  const onSubmitForm = (data) => {
     // console.log(data);
     const { type, title, price, description, images, thumbnail } = data;
     console.log(images);

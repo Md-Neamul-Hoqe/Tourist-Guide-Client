@@ -50,27 +50,40 @@ const ManageUsers = () => {
 
   const handleRemoveUser = (id) => {
     // console.log(id);
-    try {
-      axios.delete(`/users/${id}`).then((response) => {
-        if (response?.data?.deletedCount) {
-          Swal.fire({
-            icon: "success",
-            title: `User with Id: ${id}`,
-            showConfirmButton: false,
-            timer: 1000,
-          });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to delete the user",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        try {
+          axios.delete(`/users/${id}`).then((response) => {
+            if (response?.data?.deletedCount) {
+              Swal.fire({
+                icon: "success",
+                title: `User Removed with Id: ${id}`,
+                showConfirmButton: false,
+                timer: 1000,
+              });
 
-          refetchUsers();
+              refetchUsers();
+            }
+          });
+        } catch (error) {
+          console.log(error);
+          Swal.fire({
+            icon: "error",
+            title: error?.message,
+            showConfirmButton: false,
+            timer: 2000,
+          });
         }
-      });
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: error?.message,
-        showConfirmButton: false,
-        timer: 1000,
-      });
-    }
+      }
+    });
   };
 
   return (

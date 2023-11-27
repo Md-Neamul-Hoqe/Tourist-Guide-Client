@@ -89,7 +89,7 @@ const Navbar = () => {
               </button>
               <ul
                 tabIndex={0}
-                className="menu dropdown-content border right-0 bg-base-100 z-[2]">
+                className="menu dropdown-content border right-0 bg-base-100 z-[50]">
                 <ul className="border rounded-t-lg">
                   <li className="px-2 py-1">
                     Name: {user?.displayName || user?.email.split("@")[0]}

@@ -10,24 +10,12 @@ import TourPackage from "../Components/TourPackage";
 import TouristGuid from "../Components/TouristGuid";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import useGuides from "../../../Hooks/useGuides";
+import Guides from "../../Guides/Guides";
 
 const Tourism = () => {
   const [noOfGuides, setNoOfGuides] = useState(4);
   const axios = useAxiosPublic();
-
-  const {
-    data: guides = [],
-    // refetch,
-    isPending: guidesPending,
-    isLoading: guidesLoading,
-  } = useQuery({
-    queryKey: ["guides"],
-    queryFn: async () => {
-      const res = await axios.get("/role-users/guide");
-      // console.log(res?.data);
-      return res?.data;
-    },
-  });
 
   const {
     data: packages = [],
@@ -44,7 +32,7 @@ const Tourism = () => {
   });
 
   return (
-    <div className={`py-24 relative ${maxWidthStyles}`}>
+    <div className={`pt-24 relative ${maxWidthStyles}`}>
       <Tabs>
         <TabList>
           <Tab>Overview</Tab>
@@ -164,22 +152,34 @@ const Tourism = () => {
         </TabPanel>
 
         <TabPanel>
-          {packagesPending || packagesLoading ? (
-            "Loading..."
-          ) : packages?.length ? (
-            <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {packages?.map((thePackage, idx) => (
-                  <TourPackage key={idx} thePackage={thePackage} />
-                ))}
-              </div>
-                <div className="w-full my-10">
-                  <Link to={`/packages`} className="btn bg-blue-700 text-white">
-                    All Packages
-                  </Link>
+          <div className="flex justify-center items-center min-h-[calc(100vh/4)]">
+            {!packagesPending && !packagesLoading ? (
+              Array.isArray(packages) && packages?.length ? (
+                <div className="flex flex-wrap justify-center gap-10 mb-10 py-10">
+                  {
+                    <>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        {packages?.map((thePackage, idx) => (
+                          <TourPackage key={idx} thePackage={thePackage} />
+                        ))}
+                      </div>
+                      <div className="w-full my-10">
+                        <Link
+                          to={`/packages`}
+                          className="btn bg-blue-700 text-white">
+                          All Packages
+                        </Link>
+                      </div>
+                    </>
+                  }
                 </div>
-            </>
-          ) : null}
+              ) : (
+                "Something Wrong."
+              )
+            ) : (
+              "Loading..."
+            )}
+          </div>
 
           <div className="absolute right-10 bottom-0">
             <motion.a
@@ -192,27 +192,8 @@ const Tourism = () => {
           </div>
         </TabPanel>
 
-        <TabPanel>
-          {guidesPending || guidesLoading ? (
-            "Loading..."
-          ) : guides?.length ? (
-            <>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {guides.slice(0, noOfGuides)?.map((guide, idx) => (
-                  <TouristGuid key={idx} guide={guide} />
-                ))}
-              </div>
-              {noOfGuides !== guides?.length ? (
-                <div className="w-full my-10">
-                  <button
-                    className="btn bg-blue-700 text-white"
-                    onClick={() => setNoOfGuides(guides?.length)}>
-                    All Guides
-                  </button>
-                </div>
-              ) : null}
-            </>
-          ) : null}
+        <TabPanel className={"mb-20"}>
+          <Guides />
         </TabPanel>
       </Tabs>
     </div>

@@ -17,7 +17,7 @@ const useUser = () => {
     queryFn: async () => {
       if (user?.email) {
         const { data } = await axios.get(`/current-user/${user?.email}`);
-        console.log(data);
+        // console.log(data);
 
         return data;
       }

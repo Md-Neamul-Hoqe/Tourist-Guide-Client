@@ -37,68 +37,71 @@ const Register = () => {
     // https://i.ibb.co/WFhJcTx/user-3.png
     console.log({ email, password, name, photoURL });
 
-    createUser(email, password).then((res) => {
-      const loggedUser = res?.user;
+    createUser(email, password)
+      .then((res) => {
+        const loggedUser = res?.user;
 
-      console.log(loggedUser);
-      updateUserProfile(displayName, photoURL)
-        .then(() => {
-          const userInfo = {
-            name: displayName,
-            role: "tourist",
-            profilePicture: photoURL,
-            education: education,
-            skills: skills.split(","),
-            workExperience: experiences.split(","),
-            contactDetails: {
-              email,
-              phone,
-              location,
-              socialMedia: {
-                twitter,
-                instagram,
+        console.log(loggedUser);
+        updateUserProfile(displayName, photoURL)
+          .then(() => {
+            const userInfo = {
+              name: displayName,
+              role: "tourist",
+              profilePicture: photoURL,
+              education: education,
+              skills: skills.split(","),
+              workExperience: experiences.split(","),
+              contactDetails: {
+                email,
+                phone,
+                location,
+                socialMedia: {
+                  twitter,
+                  instagram,
+                },
               },
-            },
-          };
+            };
 
-          console.log(userInfo);
+            console.log(userInfo);
 
-          axiosPublic.post("/users", userInfo).then((res) => {
-            if (res?.data?.insertedId) {
-              // console.log("User photo updated.");
+            axiosPublic.post("/users", userInfo).then((res) => {
+              if (res?.data?.insertedId) {
+                // console.log("User photo updated.");
 
-              Swal.fire({
-                icon: "success",
-                title: "User profile updated successfully.",
-                showConfirmButton: false,
-                timer: 1500,
-              });
+                Swal.fire({
+                  icon: "success",
+                  title: "User profile updated successfully.",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
 
-              reset();
+                reset();
 
-              navigate(from, { replace: true });
-            } else {
-              Swal.fire({
-                icon: "error",
-                title: `Database error: ${res?.data}.`,
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            }
+                navigate(from, { replace: true });
+              } else {
+                Swal.fire({
+                  icon: "error",
+                  title: `Database error: ${res?.data}.`,
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+              }
+            });
+          })
+          .catch((error) => {
+            console.log(error);
           });
-        })
-        .catch((error) => {
-          console.log(error);
-          Swal.fire({
-            icon: "warning",
-            title: error.message,
-            showConfirmButton: false,
-            timer: 2000,
-          });
+
+        // console.log(res, loggedUser);
+      })
+      .catch((error) => {
+        return Swal.fire({
+          icon: "warning",
+          title: error.message,
+          showConfirmButton: false,
+          timer: 2000,
         });
-
-      // console.log(res, loggedUser);
-    });
+      });
   };
 
   return (
@@ -122,12 +125,6 @@ const Register = () => {
           <label className="label">
             <span className="label-text">Requested Role</span>
           </label>
-          {/* <input
-            {...register("role", ["tourist", "guide"], { default: "tourist" })}
-            type="text"
-            placeholder="tourist"
-            className="input input-bordered"
-          /> */}
           <select
             name="role"
             className="select select-bordered"

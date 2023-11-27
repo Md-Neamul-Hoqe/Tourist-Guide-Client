@@ -49,21 +49,21 @@ const Wishlist = () => {
   return (
     <div>
       <h2 className="text-2xl font-semibold text-center py-5">Wishlist</h2>
-      <div className="overflow-x-auto">
-        <table className="table">
-          {/* head */}
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Details</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {!wishListPaused && !wishListLoading
-              ? wishList?.length
-                ? wishList?.map((Package) => (
+      {!wishListPaused && !wishListLoading ? (
+        <div className="overflow-x-auto">
+          {Array.isArray(wishList) ? (
+            wishList?.length ? (
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Details</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {wishList?.map((Package) => (
                     <tr key={Package?._id}>
                       <td>
                         <div className="flex items-center gap-3">
@@ -99,12 +99,23 @@ const Wishlist = () => {
                         </button>
                       </th>
                     </tr>
-                  ))
-                : null
-              : "Loading.."}
-          </tbody>
-        </table>
-      </div>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <div className=" min-h-[calc(100vh-100px)] flex justify-center items-center">
+                {"No Bookings Found"}
+              </div>
+            )
+          ) : (
+            <div className=" min-h-[calc(100vh-100px)] flex justify-center items-center">
+              {`Something Wrong.`}
+            </div>
+          )}
+        </div>
+      ) : (
+        "Loading.."
+      )}
     </div>
   );
 };

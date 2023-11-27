@@ -16,7 +16,6 @@ import AdminProfile from "../pages/AdminProfile/AdminProfile";
 import Bookings from "../pages/TouristProfile/Sections/Bookings/Bookings";
 import Wishlist from "../pages/AdminProfile/Sections/Wishlist/Wishlist";
 import ManageUsers from "../pages/AdminProfile/Sections/ManageUsers/ManageUsers";
-import DashboardAuth from "../Providers/DashboardAuth";
 import AllStories from "../pages/AllStories/AllStories";
 import AddPackage from "../pages/AdminProfile/Sections/AddPackage/AddPackage";
 import Packages from "../pages/Packages/Packages";
@@ -90,11 +89,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: (
-      <DashboardAuth>
-        <Dashboard />
-      </DashboardAuth>
-    ),
+    element: <Dashboard />,
     children: [
       {
         path: "admin-profile",

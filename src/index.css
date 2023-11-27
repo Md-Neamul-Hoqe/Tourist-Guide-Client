@@ -6,7 +6,9 @@
 :root {
   @apply p-0 m-0 box-border font-inter;
 }
-
+.btn {
+  @apply capitalize whitespace-nowrap;
+}
 a.active {
   @apply bg-transparent text-black font-extrabold !important;
 }
