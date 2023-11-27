@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import AwesomeSlider from "react-awesome-slider";
 import Swal from "sweetalert2";
@@ -12,6 +12,7 @@ import ReactDatePicker from "react-datepicker";
 import { useState } from "react";
 import "react-awesome-slider/dist/styles.css";
 import "react-datepicker/dist/react-datepicker.css";
+import { motion } from "framer-motion";
 
 const PackageDetails = () => {
   const { user } = useAuth();
@@ -40,6 +41,23 @@ const PackageDetails = () => {
       const res = await axios.get(`/details-packages/${id}`);
       // console.log("Details Package: ", res?.data);
       return res?.data;
+    },
+  });
+
+  /* Get all Tour Plane of the package */
+  const {
+    data: tourPlane = [],
+    isLoading: isLoadingTourPlane,
+    isPaused: isPausedTourPlane,
+  } = useQuery({
+    enabled: !!tourPackage?.type,
+    queryKey: ["tourPlane"],
+    queryFn: async () => {
+      const res = await axios.get(`/tour-plane/${tourPackage?.type}`);
+
+      console.log("Planes: ", res?.data);
+
+      return res?.data?.planes;
     },
   });
 
@@ -164,6 +182,7 @@ const PackageDetails = () => {
     }
   };
 
+  console.log(tourPackage?.type);
   return (
     !isLoading && (
       <section>
@@ -199,7 +218,44 @@ const PackageDetails = () => {
         </section>
 
         {/* TODO: Tour Plane Section */}
-        <section></section>
+        <section>
+          {!isPausedTourPlane && !isLoadingTourPlane ? (
+            Array.isArray(tourPlane) ? (
+              tourPlane?.length ? (
+                <>
+                  <h2 className="font-mono text-2xl font-semibold text-center mb-20">
+                    Tour Plane
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-20">
+                    {tourPlane?.map((plane, idx) => (
+                      <div key={idx} className="card bg-base-100 card-bordered">
+                        <div className="absolute -left-3 -top-3">
+                          <span className="px-3 py-2 rounded-xl bg-gradient-to-b from-blue-700 via-blue-400 to-blue-700 text-white">
+                            Day {plane?.day}
+                          </span>
+                        </div>
+
+                        <div className="card-body rounded-lg flex-grow bg-gradient-to-br from-blue-700 from-5% via-blue-400 to-blue-700 text-white">
+                          <h2 className="card-title font-mono">
+                            {plane?.title}
+                          </h2>
+
+                          <p className="text-xs">{plane?.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                "No Tour Plane Found"
+              )
+            ) : (
+              "Something Wrong."
+            )
+          ) : (
+            "Loading.."
+          )}
+        </section>
 
         {/* Booking Section */}
         <section className="py-10">

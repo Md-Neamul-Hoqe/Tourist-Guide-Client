@@ -27,7 +27,7 @@ const AssignedTrips = () => {
     },
   });
 
-  const handleAccept = (id, status) => {
+  const handleTripRequest = (id, status) => {
     console.log(id, status);
     Swal.fire({
       title: "Are you sure?",
@@ -72,7 +72,10 @@ const AssignedTrips = () => {
 
   return (
     <div>
-      {!isPausedTrips && !isLoadingTrips && !isPendingTrips ? (
+      {!isLoadingUserInfo &&
+      !isPausedTrips &&
+      !isPendingTrips &&
+      !isLoadingTrips ? (
         <div className="overflow-x-auto">
           {Array.isArray(trips) ? (
             trips?.length ? (
@@ -117,7 +120,9 @@ const AssignedTrips = () => {
 
                       <th>
                         <button
-                          onClick={() => handleAccept(trip?._id, "accepted")}
+                          onClick={() =>
+                            handleTripRequest(trip?._id, "accepted")
+                          }
                           className={`btn btn-xs ${
                             trip?.status === "in review" ? "" : "btn-disabled"
                           }`}>
@@ -126,7 +131,9 @@ const AssignedTrips = () => {
                       </th>
                       <th>
                         <button
-                          onClick={() => handleAccept(trip?._id, "rejected")}
+                          onClick={() =>
+                            handleTripRequest(trip?._id, "rejected")
+                          }
                           className={`btn btn-xs  ${
                             trip?.status === "in review" ? "" : "btn-disabled"
                           }`}>
@@ -149,7 +156,9 @@ const AssignedTrips = () => {
           )}
         </div>
       ) : (
-        "Loading.."
+        <div className=" min-h-[calc(100vh-100px)] flex justify-center items-center">
+          {`Something Wrong.`}
+        </div>
       )}
     </div>
   );

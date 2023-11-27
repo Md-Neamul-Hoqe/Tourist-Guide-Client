@@ -3,6 +3,7 @@ import useAuth from "../../../../Hooks/useAuth";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
+import { useEffect } from "react";
 
 const Bookings = () => {
   const { user } = useAuth();
@@ -68,6 +69,10 @@ const Bookings = () => {
       }
     });
   };
+
+  useEffect(() => {
+    if (bookings?.length === 4) "";
+  }, [bookings?.length]);
 
   const handlePayment = (id) => {
     console.log(id);
@@ -158,7 +163,9 @@ const Bookings = () => {
                       <th>
                         <button
                           onClick={() => handleApply(booking?._id)}
-                          className={`btn btn-xs btn-disabled`}>
+                          className={`btn btn-xs ${
+                            bookings?.length > 3 ? "" : "btn-disabled"
+                          }`}>
                           Apply
                         </button>
                       </th>
@@ -178,7 +185,9 @@ const Bookings = () => {
           )}
         </div>
       ) : (
-        "Loading.."
+        <div className=" min-h-[calc(100vh-100px)] flex justify-center items-center">
+          {`Loading...`}
+        </div>
       )}
     </div>
   );

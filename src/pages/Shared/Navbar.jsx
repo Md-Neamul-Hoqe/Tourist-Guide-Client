@@ -8,8 +8,7 @@ import useUser from "../../Hooks/useUser";
 
 const Navbar = () => {
   const { userSignOut } = useAuth();
-  const [userProfile, isPendingUserInfo, isLoadingUserInfo] =
-    useUser();
+  const [userProfile, isPendingUserInfo, isLoadingUserInfo] = useUser();
 
   console.log(userProfile);
 
@@ -87,7 +86,7 @@ const Navbar = () => {
           !isLoadingUserInfo &&
           userProfile?.contactDetails?.email &&
           userProfile?.role ? (
-            <div className="dropdown max-w-[40vw]">
+            <div className="dropdown max-w-[50vw]">
               <button tabIndex={0} className="avatar w-12">
                 {userProfile?.profilePicture ? (
                   <img
@@ -100,7 +99,7 @@ const Navbar = () => {
               </button>
               <ul
                 tabIndex={0}
-                className="menu dropdown-content border right-0 bg-base-100 z-[50]">
+                className="menu dropdown-content border right-3 top-[61px] bg-base-100 z-[50]">
                 <ul className="border rounded-t-lg">
                   <li className="px-2 py-1">
                     Name:{" "}
