@@ -4,39 +4,27 @@ import {
   FaEnvelope,
   FaHome,
   FaList,
-  FaShoppingCart,
   FaUtensils,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useDashboardAuth from "../Hooks/useDashboardAuth";
 
 const Dashboard = () => {
-  const {
-    whichRole,
-    isPaused,
-    whichRolePending,
-    whichRoleLoading,
-    isPendingUserInfo,
-    isLoadingUserInfo,
-  } = useDashboardAuth();
+  const { userProfile, isPaused, isPendingUserInfo, isLoadingUserInfo } =
+    useDashboardAuth();
 
-  console.log(whichRole, "tourist");
   return (
     <section className="flex min-h-screen">
-      {isPaused ||
-      whichRolePending ||
-      isPendingUserInfo ||
-      isLoadingUserInfo ||
-      whichRoleLoading ? (
+      {isPaused || isPendingUserInfo || isLoadingUserInfo ? (
         "Loading..."
       ) : (
         <aside className="w-64 min-h-full bg-blue-400 text-white capitalize">
           <div className="sticky">
             <ul className="menu p-4 sticky">
-              {whichRole === "admin" ? (
+              {userProfile?.role === "admin" ? (
                 <>
                   <li style={{ fontVariantCaps: "small-caps" }}>
-                    <NavLink to="/dashboard/admin-profile">
+                    <NavLink to={`/dashboard/admin-profile`}>
                       <FaHome />
                       Admin Profile
                     </NavLink>
@@ -54,7 +42,7 @@ const Dashboard = () => {
                     </NavLink>
                   </li>
                 </>
-              ) : whichRole === "tourist" ? (
+              ) : userProfile?.role === "tourist" ? (
                 <>
                   <li style={{ fontVariantCaps: "small-caps" }}>
                     <NavLink to="/dashboard/tourist-profile">
@@ -84,7 +72,8 @@ const Dashboard = () => {
               ) : (
                 <>
                   <li style={{ fontVariantCaps: "small-caps" }}>
-                    <NavLink to="/dashboard/guide-profile">
+                    <NavLink
+                      to={`/dashboard/guide-profile/${userProfile?._id}`}>
                       <FaHome />
                       Guide Home
                     </NavLink>

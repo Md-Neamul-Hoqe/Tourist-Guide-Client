@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import AwesomeSlider from "react-awesome-slider";
-import "react-awesome-slider/dist/styles.css";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import Guides from "../Guides/Guides";
@@ -11,16 +10,22 @@ import useAuth from "../../Hooks/useAuth";
 import useGuides from "../../Hooks/useGuides";
 import ReactDatePicker from "react-datepicker";
 import { useState } from "react";
+import "react-awesome-slider/dist/styles.css";
 import "react-datepicker/dist/react-datepicker.css";
 
 const PackageDetails = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const navigate = useNavigate();
-  const axios = useAxiosPublic();
   const { user } = useAuth();
   const { userProfile, isPendingUserInfo, isLoadingUserInfo } =
     useDashboardAuth();
+
+  /* get all guides information */
+  const [guides] = useGuides();
+
   const { id } = useParams();
+  const [startDate, setStartDate] = useState(new Date());
+  const axios = useAxiosPublic();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -28,6 +33,7 @@ const PackageDetails = () => {
     reset,
   } = useForm();
 
+  /* Get all information of the package */
   const { data: tourPackage = {}, isLoading } = useQuery({
     queryKey: ["tourPackage"],
     queryFn: async () => {
@@ -37,6 +43,7 @@ const PackageDetails = () => {
     },
   });
 
+  /* get the booking status of the package */
   const { data: bookingStatus = false } = useQuery({
     enabled: !!user?.email,
     queryKey: ["isBooked", user?.email],
@@ -78,8 +85,7 @@ const PackageDetails = () => {
                   Swal.fire({
                     icon: "error",
                     title: `Can't Canceled.`,
-                    showConfirmButton: false,
-                    timer: 1500,
+                    showConfirmButton: true,
                   });
                 }
               });
@@ -88,8 +94,7 @@ const PackageDetails = () => {
             Swal.fire({
               icon: "error",
               title: error?.message,
-              showConfirmButton: false,
-              timer: 2000,
+              showConfirmButton: true,
             });
           }
         }
@@ -108,7 +113,10 @@ const PackageDetails = () => {
         guideInfo: JSON.parse(guide),
         price: tourPackage?.price,
         trip_date: startDate,
-        email: userProfile?.contactDetails?.email,
+        touristInfo: {
+          email: userProfile?.contactDetails?.email,
+          name: userProfile?.name,
+        },
         status: "in review",
       };
 
@@ -139,8 +147,7 @@ const PackageDetails = () => {
                 Swal.fire({
                   icon: "error",
                   title: `Can't added.`,
-                  showConfirmButton: false,
-                  timer: 1500,
+                  showConfirmButton: true,
                 });
               }
             });
@@ -149,8 +156,7 @@ const PackageDetails = () => {
             Swal.fire({
               icon: "error",
               title: error?.message,
-              showConfirmButton: false,
-              timer: 2000,
+              showConfirmButton: true,
             });
           }
         }
@@ -158,9 +164,6 @@ const PackageDetails = () => {
     }
   };
 
-  // console.log(tourPackage);
-
-  const [guides] = useGuides();
   return (
     !isLoading && (
       <section>
@@ -174,7 +177,7 @@ const PackageDetails = () => {
         </AwesomeSlider>
 
         {/* About Section */}
-        <div className="card rounded-none py-10 mt-20">
+        <section className="card rounded-none py-10 mt-20">
           <h2 className="text-xl text-center font-semibold font-mono">
             About The Package
           </h2>
@@ -185,17 +188,21 @@ const PackageDetails = () => {
             </small>
             <p>{tourPackage?.description}</p>
           </div>
-        </div>
+        </section>
 
-        <div className="py-10">
+        {/* Guides Section */}
+        <section className="py-10">
           <h2 className="text-2xl font-semibold font-mono text-center">
             Our Tour Guides
           </h2>
           <Guides />
-        </div>
+        </section>
+
+        {/* TODO: Tour Plane Section */}
+        <section></section>
 
         {/* Booking Section */}
-        <div className="py-10">
+        <section className="py-10">
           <h2 className="text-2xl font-semibold font-mono text-center">
             Book A Tour
           </h2>
@@ -238,13 +245,17 @@ const PackageDetails = () => {
                 onChange={(date) => setStartDate(date)}
               />
             </div>
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Select a guide</span>
               </label>
               <select
                 className="select select-bordered"
-                {...register("guide", { required: true })}>
+                {...register("guide", {
+                  default: "not selected",
+                  required: true,
+                })}>
                 <option value="not selected" disabled>
                   Select a guide
                 </option>
@@ -263,11 +274,13 @@ const PackageDetails = () => {
                 <p className="text-red-700">Guide is required</p>
               ) : null}
             </div>
+
             <div className="form-control">
               <small className="font-semibold">
                 Type: {tourPackage?.type}, Price: {tourPackage?.price}$
               </small>
             </div>
+
             <div className="form-control mt-6">
               <button
                 type="submit"
@@ -277,9 +290,8 @@ const PackageDetails = () => {
                 {bookingStatus?.isBooked ? "Booked" : "Book Now"}
               </button>
             </div>
-            {/* {errors ? <p>{errors}</p> : null} */}
           </form>
-        </div>
+        </section>
       </section>
     )
   );

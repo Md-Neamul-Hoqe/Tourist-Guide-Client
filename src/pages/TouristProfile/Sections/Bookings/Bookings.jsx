@@ -53,8 +53,7 @@ const Bookings = () => {
                 Swal.fire({
                   icon: "error",
                   title: `Can't Canceled.`,
-                  showConfirmButton: false,
-                  timer: 1500,
+                  showConfirmButton: true,
                 });
               }
             });
@@ -63,8 +62,7 @@ const Bookings = () => {
           Swal.fire({
             icon: "error",
             title: error?.message,
-            showConfirmButton: false,
-            timer: 2000,
+            showConfirmButton: true,
           });
         }
       }

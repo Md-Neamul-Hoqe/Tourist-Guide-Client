@@ -42,8 +42,7 @@ const ManageUsers = () => {
       Swal.fire({
         icon: "error",
         title: error?.message,
-        showConfirmButton: false,
-        timer: 1000,
+        showConfirmButton: true,
       });
     }
   };
@@ -78,8 +77,7 @@ const ManageUsers = () => {
           Swal.fire({
             icon: "error",
             title: error?.message,
-            showConfirmButton: false,
-            timer: 2000,
+            showConfirmButton: true
           });
         }
       }

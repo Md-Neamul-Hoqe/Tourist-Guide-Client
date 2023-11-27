@@ -4,11 +4,14 @@ import logo from "/Vector.svg";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import maxWidthStyles from "./SectionMaxWidth";
-import useRole from "../../Hooks/useRole";
+import useUser from "../../Hooks/useUser";
 
 const Navbar = () => {
-  const { user, userSignOut } = useAuth();
-  const [whichRole, whichRoleLoading, isPending] = useRole();
+  const { userSignOut } = useAuth();
+  const [userProfile, isPendingUserInfo, isLoadingUserInfo] =
+    useUser();
+
+  console.log(userProfile);
 
   const navLinks = (
     <>
@@ -33,7 +36,12 @@ const Navbar = () => {
   const handleLogOut = () => {
     try {
       userSignOut().then(() => {
-        return Swal.fire("Sign Out Successfully");
+        return Swal.fire({
+          icon: "success",
+          text: "Sign Out Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
     } catch (error) {
       console.log(error);
@@ -75,14 +83,17 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>
         <div className="navbar-end">
-          {!isPending && !whichRoleLoading && user?.email && whichRole ? (
+          {!isPendingUserInfo &&
+          !isLoadingUserInfo &&
+          userProfile?.contactDetails?.email &&
+          userProfile?.role ? (
             <div className="dropdown max-w-[40vw]">
               <button tabIndex={0} className="avatar w-12">
-                {user?.photoURL ? (
+                {userProfile?.profilePicture ? (
                   <img
                     className="rounded-full"
-                    src={user?.photoURL}
-                    alt={user?.displayName}></img>
+                    src={userProfile?.profilePicture}
+                    alt={userProfile?.name}></img>
                 ) : (
                   <FaRegUserCircle className="text-3xl text-blue-800" />
                 )}
@@ -92,17 +103,21 @@ const Navbar = () => {
                 className="menu dropdown-content border right-0 bg-base-100 z-[50]">
                 <ul className="border rounded-t-lg">
                   <li className="px-2 py-1">
-                    Name: {user?.displayName || user?.email.split("@")[0]}
+                    Name:{" "}
+                    {userProfile?.name ||
+                      userProfile?.contactDetails?.email.split("@")[0]}
                   </li>
-                  <li className="px-2 py-1">Email: {user?.email}</li>
+                  <li className="px-2 py-1">
+                    Email: {userProfile?.contactDetails?.email}
+                  </li>
                 </ul>
                 <li className="border px-5 py-1">
                   <NavLink
                     to={`/dashboard/${
-                      whichRole === "admin"
+                      userProfile?.role === "admin"
                         ? "admin-profile"
-                        : whichRole === "guide"
-                        ? "guide-profile"
+                        : userProfile?.role === "guide"
+                        ? `guide-profile/${userProfile?._id}`
                         : "tourist-profile"
                     }`}>
                     Dashboard

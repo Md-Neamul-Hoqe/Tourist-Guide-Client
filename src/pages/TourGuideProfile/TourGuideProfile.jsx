@@ -18,10 +18,11 @@ const TourGuideProfile = () => {
     isLoading: isLoadingReviews,
     refetch: refetchReviews,
   } = useQuery({
+    enabled: !!id,
     queryKey: ["reviews", id],
     queryFn: async () => {
       const reviews = await axios.get(`/reviews/${id}`);
-      console.log(reviews);
+      // console.log(reviews);
       return reviews?.data;
     },
   });
@@ -35,16 +36,17 @@ const TourGuideProfile = () => {
   const { register, reset, handleSubmit } = useForm();
 
   const { data: tourGuide = {}, isLoading } = useQuery({
-    queryKey: ["tour-guide"],
+    enabled: !!id,
+    queryKey: ["tour-guide", id],
     queryFn: async () => {
       const res = await axios.get(`/users/${id}`);
-      console.log(res?.data);
+      // console.log(res?.data);
       return res?.data;
     },
   });
-
+  // console.log(tourGuide?.contactDetails?.email, user?.email);
   const onSubmitForm = (data) => {
-    console.log(data);
+    // console.log(data);
     const { review, title } = data;
 
     const saveReview = {
@@ -92,7 +94,12 @@ const TourGuideProfile = () => {
               />
             </figure>
             <div className="card-body text-start">
-              <h2 className="card-title">{tourGuide?.name}</h2>
+              <h2 className="card-title">
+                {tourGuide?.name}
+                <span className="badge bg-white text-blue-700 badge-outline">
+                  {tourGuide?.role}
+                </span>
+              </h2>
               <p>Phone: {tourGuide?.contactDetails?.phone || "Not allowed"}</p>
               <p>Education: {tourGuide?.education || "Not allowed"}</p>
               <p>Skills: {tourGuide?.skills.toString() || "Not allowed"}</p>
@@ -127,7 +134,9 @@ const TourGuideProfile = () => {
         ) : null}
       </section>
       <section
-        className={`my-10 ${tourGuide?.email === user?.email ? "hidden" : ""}`}>
+        className={`my-10 ${
+          tourGuide?.contactDetails?.email === user?.email ? "hidden" : ""
+        }`}>
         <h3 className="text-xl font-semibold font-mono">
           Review as {user?.email}
         </h3>

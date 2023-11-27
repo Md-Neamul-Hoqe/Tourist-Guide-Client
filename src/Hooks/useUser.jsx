@@ -6,6 +6,8 @@ const useUser = () => {
   const { user } = useAuth();
   const axios = useAxiosPublic();
 
+  console.log(user?.photoURL);
+
   const {
     data: userProfile,
     isPending: isPendingUserInfo,

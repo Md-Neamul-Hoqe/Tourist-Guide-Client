@@ -38,8 +38,7 @@ const Wishlist = () => {
           Swal.fire({
             icon: "error",
             title: `Database error: ${error?.message}.`,
-            showConfirmButton: false,
-            timer: 1500,
+            showConfirmButton: true,
           });
         }
       }

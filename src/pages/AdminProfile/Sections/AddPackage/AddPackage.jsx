@@ -56,8 +56,7 @@ const AddPackage = () => {
         Swal.fire({
           icon: "error",
           title: `Can't added.`,
-          showConfirmButton: false,
-          timer: 1500,
+          showConfirmButton: true,
         });
       }
     });

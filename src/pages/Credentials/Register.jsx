@@ -82,8 +82,7 @@ const Register = () => {
                 Swal.fire({
                   icon: "error",
                   title: `Database error: ${res?.data}.`,
-                  showConfirmButton: false,
-                  timer: 1500,
+                  showConfirmButton: true
                 });
               }
             });

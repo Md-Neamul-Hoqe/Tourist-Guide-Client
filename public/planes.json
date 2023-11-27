@@ -1,0 +1,122 @@
+[
+  {
+    "type": "hill",
+    "planes": [
+      {
+        "day": 1,
+        "title": "Majestic Hills Retreat",
+        "description": "Explore the serene beauty of the majestic hills, enjoy breathtaking views, and experience thrilling trekking adventures."
+      },
+      {
+        "day": 2,
+        "title": "Winter Wonderland Expedition",
+        "description": "Embark on an enchanting journey through snow-capped peaks and cozy up in the warmth of mountain lodges."
+      },
+      {
+        "day": 3,
+        "title": "Hilltop Sunrise Hike",
+        "description": "Witness stunning sunrise views from the hilltop, followed by a nature walk through scenic trails."
+      },
+      {
+        "day": 4,
+        "title": "Riverside Camping Experience",
+        "description": "Set up camp by the riverside, enjoy bonfires, stargazing, and stories under the open sky."
+      },
+      {
+        "day": 5,
+        "title": "Mountain Biking Adventure",
+        "description": "Feel the thrill of mountain biking across rugged terrains and picturesque landscapes."
+      }
+    ]
+  },
+  {
+    "type": "sea",
+    "planes": [
+      {
+        "day": 1,
+        "title": "Seaside Serenity Getaway",
+        "description": "Relax on pristine beaches, indulge in water sports, and savor fresh seafood delicacies by the sea."
+      },
+      {
+        "day": 2,
+        "title": "Island Paradise Escape",
+        "description": "Discover secluded islands, snorkel in crystal-clear waters, and unwind in luxurious beachfront resorts."
+      },
+      {
+        "day": 3,
+        "title": "Boat Cruise Adventure",
+        "description": "Embark on a thrilling boat cruise, exploring hidden coves and marine life along the coastline."
+      },
+      {
+        "day": 4,
+        "title": "Sunset Yacht Sail",
+        "description": "Experience the magic of a sunset yacht sail, enjoying breathtaking views of the horizon."
+      },
+      {
+        "day": 5,
+        "title": "Beachside Yoga Retreat",
+        "description": "Rejuvenate with beachside yoga sessions, meditation, and wellness activities by the sea."
+      }
+    ]
+  },
+  {
+    "type": "village",
+    "planes": [
+      {
+        "day": 1,
+        "title": "Countryside Charm Experience",
+        "description": "Immerse yourself in the tranquility of rural life, explore local culture, and enjoy farm-to-table dining."
+      },
+      {
+        "day": 2,
+        "title": "Historic Village Discovery",
+        "description": "Step back in time with guided tours of historic landmarks, visit quaint markets, and experience traditional festivities."
+      },
+      {
+        "day": 3,
+        "title": "Village Homestay Experience",
+        "description": "Stay with local families, participate in daily activities, and learn traditional crafts."
+      },
+      {
+        "day": 4,
+        "title": "Cooking Classes & Culinary Tour",
+        "description": "Learn to cook regional dishes, explore local markets, and savor authentic village cuisines."
+      },
+      {
+        "day": 5,
+        "title": "Hike to Ancient Ruins",
+        "description": "Embark on a hike to explore ancient ruins and archaeological sites in the village vicinity."
+      }
+    ]
+  },
+  {
+    "type": "sky",
+    "planes": [
+      {
+        "day": 1,
+        "title": "Skydiving Adventure",
+        "description": "Feel the adrenaline rush with tandem skydiving, soar through the clouds, and enjoy breathtaking aerial views."
+      },
+      {
+        "day": 2,
+        "title": "Hot Air Balloon Expedition",
+        "description": "Drift peacefully in a hot air balloon, witness stunning landscapes from above, and capture unforgettable moments."
+      },
+      {
+        "day": 3,
+        "title": "Paragliding Over Valleys",
+        "description": "Glide through the skies and experience the thrill of paragliding over scenic valleys and landscapes."
+      },
+      {
+        "day": 4,
+        "title": "Aerial Sightseeing Tour",
+        "description": "Take a mesmerizing aerial tour, capturing bird's eye views of iconic landmarks and natural wonders."
+      },
+      {
+        "day": 5,
+        "title": "Astronomy Night Experience",
+        "description": "Engage in stargazing sessions, astronomy talks, and observe celestial wonders with telescopes."
+      }
+    ]
+  }
+]
