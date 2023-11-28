@@ -10,9 +10,11 @@ import Loader from "../Loader";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
+
+  setTimeout(() => setIsLoading(false), 1000);
+
   useEffect(() => {
     window.onload = function () {
-      setIsLoading(false);
       Swal.fire({
         title: "Welcome to My Dream Place",
         text: "You can now enjoy your travel experience with easy access to resources and more.",

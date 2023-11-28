@@ -23,6 +23,9 @@ import AssignedTrips from "../pages/TourGuideProfile/Sections/AssignedTrips";
 import PrivateRoutes from "./PrivateRoutes";
 import AdminRoute from "./AdminRoute";
 import GuideRoute from "./GuideRoute";
+import Blogs from "../pages/Blogs/Blogs";
+import Community from "../pages/Community/Community";
+import AboutUs from "../pages/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -35,12 +38,20 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "contact-us",
-        element: <ContactUs />,
+        path: "community",
+        element: <Community />,
       },
       {
-        path: "logout",
-        element: <Login />,
+        path: "blogs",
+        element: <Blogs />,
+      },
+      {
+        path: "about-us",
+        element: <AboutUs />,
+      },
+      {
+        path: "contact-us",
+        element: <ContactUs />,
       },
       {
         path: "details/:id",
@@ -71,8 +82,8 @@ export const router = createBrowserRouter([
         element: <Story />,
       },
       {
-        path: "contact-us",
-        element: <ContactUs />,
+        path: "logout",
+        element: <Login />,
       },
     ],
   },
