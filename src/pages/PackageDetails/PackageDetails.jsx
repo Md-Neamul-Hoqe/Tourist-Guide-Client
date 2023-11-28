@@ -1,3 +1,4 @@
+import Loader from "../Loader";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
@@ -157,6 +158,22 @@ const PackageDetails = () => {
                   timer: 1500,
                 });
 
+                if (bookingStatus?.countBookings === 3)
+                  Swal.fire({
+                    title: "Congratulations",
+                    text: "Your got a discounts",
+                    width: 600,
+                    padding: "3em",
+                    color: "red",
+                    background: "#e2f5ea",
+                    backdrop: `
+          rgba(0,0,123,0.4)
+          url("/backdrop.webp")
+          left top / cover
+          no-repeat
+        `,
+                  });
+
                 reset();
 
                 return navigate("/dashboard/bookings", { replace: true });
@@ -265,7 +282,7 @@ const PackageDetails = () => {
           <div className="mx-10">
             {user?.email ? (
               isLoadingUserInfo || isPendingUserInfo ? (
-                "Loading..."
+                <Loader />
               ) : (
                 <div className="card lg:card-side card-bordered rounded-lg">
                   <figure className="p-3 border drop-shadow-2xl">
@@ -313,16 +330,18 @@ const PackageDetails = () => {
                 <option value="not selected" disabled>
                   Select a guide
                 </option>
-                {Array.isArray(guides) && guides?.length
-                  ? guides?.map((guide) => (
-                      <option
-                        key={guide?._id}
-                        value={JSON.stringify(guide)}
-                        className="capitalize">
-                        {guide?.name}
-                      </option>
-                    ))
-                  : "loading..."}
+                {Array.isArray(guides) && guides?.length ? (
+                  guides?.map((guide) => (
+                    <option
+                      key={guide?._id}
+                      value={JSON.stringify(guide)}
+                      className="capitalize">
+                      {guide?.name}
+                    </option>
+                  ))
+                ) : (
+                  <Loader />
+                )}
               </select>
               {errors.guide ? (
                 <p className="text-red-700">Guide is required</p>

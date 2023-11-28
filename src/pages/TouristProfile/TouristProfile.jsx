@@ -1,3 +1,4 @@
+import Loader from "../Loader";
 import useDashboardAuth from "../../Hooks/useDashboardAuth";
 import AddStory from "./Sections/AddStory/AddStory";
 
@@ -8,7 +9,7 @@ const TouristProfile = () => {
   return (
     <div>
       {isLoadingUserInfo || isPendingUserInfo ? (
-        "Loading..."
+        <Loader/>
       ) : (
         <div className="card lg:card-side card-bordered rounded-lg">
           <figure className="p-10 border drop-shadow-2xl">

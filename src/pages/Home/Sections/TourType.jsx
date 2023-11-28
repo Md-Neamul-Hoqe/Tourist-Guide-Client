@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import useTypes from "../../../Hooks/useTypes";
+import Loader from "../../Loader";
 
 const TourType = () => {
   const [types, isLoadingTypes] = useTypes();
@@ -34,7 +35,7 @@ const TourType = () => {
             "Something Wrong."
           )
         ) : (
-          "Loading..."
+          <Loader/>
         )}
       </div>
     </>

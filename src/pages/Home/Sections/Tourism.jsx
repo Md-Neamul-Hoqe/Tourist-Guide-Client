@@ -5,16 +5,13 @@ import { BsTelephone } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import YouTube from "react-youtube";
-import { useState } from "react";
 import TourPackage from "../Components/TourPackage";
-import TouristGuid from "../Components/TouristGuid";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import useGuides from "../../../Hooks/useGuides";
 import Guides from "../../Guides/Guides";
+import Loader from "../../Loader";
 
 const Tourism = () => {
-  const [noOfGuides, setNoOfGuides] = useState(4);
   const axios = useAxiosPublic();
 
   const {
@@ -177,7 +174,7 @@ const Tourism = () => {
                 "Something Wrong."
               )
             ) : (
-              "Loading..."
+              <Loader/>
             )}
           </div>
 

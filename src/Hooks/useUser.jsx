@@ -6,7 +6,7 @@ const useUser = () => {
   const { user } = useAuth();
   const axios = useAxiosPublic();
 
-  console.log(user?.photoURL);
+  // console.log(user?.photoURL);
 
   const {
     data: userProfile,

@@ -1,3 +1,4 @@
+import Loader from "../Loader";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
@@ -20,7 +21,7 @@ const PackagesAsType = () => {
   return (
     <div className="py-20">
       {isLoading ? (
-        "loading..."
+        <Loader/>
       ) : !isLoading && packages?.length ? (
         <>
           <h2 className="text-3xl text-center pb-5 font-cinzel">The Packages of Type: {type}</h2>

@@ -1,3 +1,4 @@
+import Loader from "../Loader";
 import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
@@ -47,7 +48,7 @@ const Story = () => {
           </div>
         </div>
       ) : (
-        "Loading..."
+        <Loader/>
       )}
     </div>
   );

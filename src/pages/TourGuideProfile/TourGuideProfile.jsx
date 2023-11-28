@@ -1,3 +1,4 @@
+import Loader from "../Loader";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
@@ -35,7 +36,11 @@ const TourGuideProfile = () => {
 
   const { register, reset, handleSubmit } = useForm();
 
-  const { data: tourGuide = {}, isLoading } = useQuery({
+  const {
+    data: tourGuide = {},
+    isPaused: isPausedGuide,
+    isLoading,
+  } = useQuery({
     enabled: !!id,
     queryKey: ["tour-guide", id],
     queryFn: async () => {
@@ -83,8 +88,9 @@ const TourGuideProfile = () => {
   };
   return (
     <>
+      {/* About Guide */}
       <section>
-        {!isLoading && tourGuide ? (
+        {!isPausedGuide && !isLoading && tourGuide ? (
           <div className="card lg:card-side card-bordered">
             <figure className="w-32 md:max-w-sm">
               <img
@@ -106,11 +112,13 @@ const TourGuideProfile = () => {
             </div>
           </div>
         ) : (
-          "Loading..."
+          <Loader />
         )}
       </section>
+
+      {/* Tourist Reviews */}
       <section>
-        {!isLoadingReviews ? (
+        {!isPausedGuide && !isLoading && !isLoadingReviews ? (
           <div>
             <h2 className="font-semibold">Tourist Reviews</h2>
             <div className="flex gap-3">
@@ -133,6 +141,8 @@ const TourGuideProfile = () => {
           </div>
         ) : null}
       </section>
+
+      {/* Give a review form */}
       <section
         className={`my-10 ${
           tourGuide?.contactDetails?.email === user?.email ? "hidden" : ""
@@ -176,6 +186,8 @@ const TourGuideProfile = () => {
           </div>
         </form>
       </section>
+
+      {/* Others Reviews */}
       {!isLoadingReviews ? (
         <section>
           <h2 className="text-3xl font-semibold p-5">
@@ -224,7 +236,7 @@ const TourGuideProfile = () => {
           </div>
         </section>
       ) : (
-        "Loading..."
+        <Loader />
       )}
     </>
   );

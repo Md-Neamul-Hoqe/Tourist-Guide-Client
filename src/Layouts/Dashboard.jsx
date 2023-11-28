@@ -16,7 +16,8 @@ const Dashboard = () => {
   return (
     <section className="flex min-h-screen">
       {isPaused || isPendingUserInfo || isLoadingUserInfo ? (
-        "Loading..."
+        // <Loader/>
+        ""
       ) : (
         <aside className="w-64 min-h-full bg-blue-400 text-white capitalize">
           <div className="sticky">

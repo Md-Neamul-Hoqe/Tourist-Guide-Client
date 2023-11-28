@@ -1,3 +1,4 @@
+import Loader from "../Loader";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import TourPackage from "../Home/Components/TourPackage";
@@ -21,7 +22,7 @@ const Packages = () => {
   return (
     <div className="my-10">
       {packagesPending || packagesLoading ? (
-        "Loading..."
+        <Loader/>
       ) : packages?.length ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {packages?.map((thePackage, idx) => (

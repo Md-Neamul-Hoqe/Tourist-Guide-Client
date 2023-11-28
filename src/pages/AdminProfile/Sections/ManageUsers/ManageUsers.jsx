@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 import useRole from "../../../../Hooks/useRole";
 import Swal from "sweetalert2";
+import Loader from "../../../Loader";
 
 const ManageUsers = () => {
   const axios = useAxiosPublic();
@@ -167,7 +168,7 @@ const ManageUsers = () => {
           </table>
         </div>
       ) : (
-        "Loading..."
+        <Loader/>
       )}
     </div>
   );

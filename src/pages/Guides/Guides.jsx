@@ -1,3 +1,4 @@
+import Loader from "../Loader";
 import useGuides from "../../Hooks/useGuides";
 import TouristGuid from "../Home/Components/TouristGuid";
 
@@ -16,7 +17,7 @@ const Guides = () => {
           "Something Wrong."
         )
       ) : (
-        "Loading..."
+        <Loader/>
       )}
     </div>
   );

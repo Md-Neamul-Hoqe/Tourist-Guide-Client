@@ -13,8 +13,8 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
         <DashboardAuth>
           <HelmetProvider>
             <section className="max-w-screen-2xl mx-auto">
@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             </section>
           </HelmetProvider>
         </DashboardAuth>
-      </AuthProvider>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </AuthProvider>
   </React.StrictMode>
 );

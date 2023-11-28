@@ -1,19 +1,19 @@
 import useDashboardAuth from "../../Hooks/useDashboardAuth";
+import Loader from "../Loader";
 
 const AdminProfile = () => {
   const { userProfile, isPendingUserInfo, isLoadingUserInfo } =
     useDashboardAuth();
+
+  console.log(userProfile);
   return (
     <div>
       {isLoadingUserInfo || isPendingUserInfo ? (
-        "Loading..."
+        <Loader />
       ) : (
         <div className="card lg:card-side card-bordered rounded-lg">
           <figure className="p-10 border max-w-xs">
-            <img
-              src={userProfile?.profilePicture}
-              alt={userProfile?.name}
-            />
+            <img src={userProfile?.profilePicture} alt={userProfile?.name} />
           </figure>
           <div className="card-body gap-0">
             <h2 className="card-title">

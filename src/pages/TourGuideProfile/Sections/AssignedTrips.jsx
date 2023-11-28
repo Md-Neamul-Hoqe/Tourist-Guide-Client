@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import useUser from "../../../Hooks/useUser";
+import Loader from "../../Loader";
 
 const AssignedTrips = () => {
   const [userProfile, isPendingUserInfo, isLoadingUserInfo] = useUser();
@@ -21,7 +22,7 @@ const AssignedTrips = () => {
     queryKey: ["trips", userProfile?.contactDetails?.email],
     queryFn: async () => {
       const res = await axios.get(`/guide-trips/${userProfile?._id}`);
-      // console.log("Details Package: ", res?.data);
+      console.log("Details Package: ", res?.data);
       return res?.data;
     },
   });
@@ -156,7 +157,7 @@ const AssignedTrips = () => {
         </div>
       ) : (
         <div className=" min-h-[calc(100vh-100px)] flex justify-center items-center">
-          {`Something Wrong.`}
+          <Loader />
         </div>
       )}
     </div>

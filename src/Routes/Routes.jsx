@@ -20,6 +20,9 @@ import AllStories from "../pages/AllStories/AllStories";
 import AddPackage from "../pages/AdminProfile/Sections/AddPackage/AddPackage";
 import Packages from "../pages/Packages/Packages";
 import AssignedTrips from "../pages/TourGuideProfile/Sections/AssignedTrips";
+import PrivateRoutes from "./PrivateRoutes";
+import AdminRoute from "./AdminRoute";
+import GuideRoute from "./GuideRoute";
 
 export const router = createBrowserRouter([
   {
@@ -89,19 +92,35 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRoutes>
+        <Dashboard />
+      </PrivateRoutes>
+    ),
     children: [
       {
         path: "admin-profile",
-        element: <AdminProfile />,
+        element: (
+          <AdminRoute>
+            <AdminProfile />
+          </AdminRoute>
+        ),
       },
       {
         path: "all-users",
-        element: <ManageUsers />,
+        element: (
+          <AdminRoute>
+            <ManageUsers />
+          </AdminRoute>
+        ),
       },
       {
         path: "add-package",
-        element: <AddPackage />,
+        element: (
+          <AdminRoute>
+            <AddPackage />
+          </AdminRoute>
+        ),
       },
 
       /* User Profile */
@@ -121,11 +140,19 @@ export const router = createBrowserRouter([
       /* Guide Profile */
       {
         path: "guide-profile/:id",
-        element: <TourGuideProfile />,
+        element: (
+          <GuideRoute>
+            <TourGuideProfile />
+          </GuideRoute>
+        ),
       },
       {
         path: "trips",
-        element: <AssignedTrips />,
+        element: (
+          <GuideRoute>
+            <AssignedTrips />
+          </GuideRoute>
+        ),
       },
     ],
   },
