@@ -8,6 +8,8 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 
+/* TODO: use interceptors */
+
 const useAxiosHook = () => {
   const { userSignOut } = useAuth();
   const navigate = useNavigate();

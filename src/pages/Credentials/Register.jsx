@@ -82,7 +82,7 @@ const Register = () => {
                 Swal.fire({
                   icon: "error",
                   title: `Database error: ${res?.data}.`,
-                  showConfirmButton: true
+                  showConfirmButton: true,
                 });
               }
             });
@@ -203,14 +203,14 @@ const Register = () => {
             {...register("skills")}
             type="text"
             placeholder="Skills..."
-            className="input input-bordered"
+            className="textarea textarea-bordered"
           />
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Education</span>
           </label>
-          <textarea
+          <input
             {...register("education")}
             type="text"
             placeholder="Education..."
@@ -225,7 +225,7 @@ const Register = () => {
             {...register("experiences")}
             type="text"
             placeholder="Experiences..."
-            className="input input-bordered"
+            className="textarea textarea-bordered"
           />
         </div>
         <div className="form-control">

@@ -3,7 +3,6 @@ import useAuth from "../../../../Hooks/useAuth";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
-import { useEffect } from "react";
 
 const Bookings = () => {
   const { user } = useAuth();
@@ -68,23 +67,6 @@ const Bookings = () => {
       }
     });
   };
-
-  // useEffect(() => {
-  //   if (bookings?.length === 4)
-  //     Swal.fire({
-  //       title: "Custom width, padding, color, background.",
-  //       width: 600,
-  //       padding: "3em",
-  //       color: "#716add",
-  //       background: "#fff url(/images/trees.png)",
-  //       backdrop: `
-  //         rgba(0,0,123,0.4)
-  //         url("/images/nyan-cat.gif")
-  //         left top
-  //         no-repeat
-  //       `,
-  //     });
-  // }, [bookings?.length]);
 
   const handlePayment = (id) => {
     console.log(id);

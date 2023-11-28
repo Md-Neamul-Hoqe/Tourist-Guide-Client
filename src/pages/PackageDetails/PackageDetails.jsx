@@ -13,6 +13,7 @@ import ReactDatePicker from "react-datepicker";
 import { useState } from "react";
 import "react-awesome-slider/dist/styles.css";
 import "react-datepicker/dist/react-datepicker.css";
+import bookedImg from "/booked.png";
 
 const PackageDetails = () => {
   const { user } = useAuth();
@@ -152,8 +153,11 @@ const PackageDetails = () => {
             axios.post("/create-booking", bookingInfo).then((res) => {
               if (res?.data?.insertedId) {
                 Swal.fire({
-                  icon: "success",
-                  title: "Booked successfully.",
+                  title: "Booked successfully",
+                  imageUrl: bookedImg,
+                  imageWidth: 250,
+                  imageHeight: 200,
+                  imageAlt: "Booked",
                   showConfirmButton: false,
                   timer: 1500,
                 });
@@ -161,10 +165,10 @@ const PackageDetails = () => {
                 if (bookingStatus?.countBookings === 3)
                   Swal.fire({
                     title: "Congratulations",
-                    text: "Your got a discounts",
+                    text: "Your got a 10% discounts",
                     width: 600,
                     padding: "3em",
-                    color: "red",
+                    color: "blue",
                     background: "#e2f5ea",
                     backdrop: `
           rgba(0,0,123,0.4)

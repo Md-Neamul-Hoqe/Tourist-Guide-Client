@@ -19,10 +19,11 @@ const Home = () => {
         title: "Welcome to My Dream Place",
         text: "You can now enjoy your travel experience with easy access to resources and more.",
         imageUrl: welcome,
-        imageWidth: 300,
+        imageWidth: 250,
         imageHeight: 200,
         imageAlt: "welcome",
-        confirmButtonText: "get started",
+        confirmButtonText: "Get Started",
+        confirmButtonColor: "#1d4ed8",
       });
     };
   }, []);
