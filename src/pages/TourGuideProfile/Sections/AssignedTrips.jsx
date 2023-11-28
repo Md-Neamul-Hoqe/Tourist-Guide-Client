@@ -20,9 +20,8 @@ const AssignedTrips = () => {
       !!userProfile?.contactDetails?.email,
     queryKey: ["trips", userProfile?.contactDetails?.email],
     queryFn: async () => {
-      /* TODO: need booked package details */
       const res = await axios.get(`/guide-trips/${userProfile?._id}`);
-      console.log("Details Package: ", res?.data);
+      // console.log("Details Package: ", res?.data);
       return res?.data;
     },
   });

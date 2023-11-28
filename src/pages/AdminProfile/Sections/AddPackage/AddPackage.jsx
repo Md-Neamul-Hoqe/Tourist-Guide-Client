@@ -120,6 +120,7 @@ const AddPackage = () => {
             {...register("images")}
             type="file"
             multiple
+            accept="image/jpg, image/jpeg, image/png"
             placeholder="Scenario Images"
             className="file-input file-input-bordered file-input-info"
           />
@@ -131,13 +132,13 @@ const AddPackage = () => {
           <input
             {...register("thumbnail")}
             type="file"
-            multiple
+            accept="image/jpg, image/jpeg, image/png"
             placeholder="Cover Photo URL"
             className="file-input file-input-bordered file-input-info"
           />
         </div>
         <div className="form-control mt-6">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn bg-blue-700 text-white">
             Add Package
           </button>
         </div>

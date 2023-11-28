@@ -23,12 +23,9 @@ const TourPackage = ({ thePackage }) => {
     if (user?.email && !wishListPaused && !wishListLoading) {
       const wishListLength = wishList?.length;
 
-      // if (wishListLength) setIsWishedPackageLoading(true);
       console.log("No. of Wish packages: ", wishListLength);
 
       for (let index = 0; index < wishListLength; index++) {
-        /* TODO: inWishList not working is the ids are equal */
-
         console.log(
           "are The ids equal? ",
           wishList[index]?._id,
@@ -38,7 +35,6 @@ const TourPackage = ({ thePackage }) => {
 
         if (wishList[index]?._id === thePackage?._id) {
           setInWishList(true);
-          // setIsWishedPackageLoading(false);
           break;
         }
       }
@@ -55,7 +51,6 @@ const TourPackage = ({ thePackage }) => {
     }
 
     if (!inWishList) {
-      /* TODO: Check user is sign in else redirect to sign in page then other process */
 
       const wishPackage = {
         package_id: id,

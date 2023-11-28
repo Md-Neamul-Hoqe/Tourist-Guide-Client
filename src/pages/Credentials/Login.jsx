@@ -134,7 +134,7 @@ const Login = () => {
           </div>
         </div>
         <div className="form-control mt-6">
-          <button type="submit" disabled={disabled} className="btn btn-primary">
+          <button type="submit" disabled={disabled} className="btn bg-blue-700 text-white">
             Login
           </button>
         </div>

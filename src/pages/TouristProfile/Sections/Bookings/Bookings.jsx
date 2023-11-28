@@ -19,9 +19,8 @@ const Bookings = () => {
     enabled: !!user?.email,
     queryKey: ["bookings", user?.email],
     queryFn: async () => {
-      /* TODO: need booked package details */
       const res = await axios.get(`/bookings?email=${user?.email}`);
-      console.log("Details Package: ", res?.data);
+      // console.log("Details Package: ", res?.data);
       return res?.data;
     },
   });
@@ -71,7 +70,20 @@ const Bookings = () => {
   };
 
   useEffect(() => {
-    if (bookings?.length === 4) "";
+    if (bookings?.length === 4)
+      Swal.fire({
+        title: "Custom width, padding, color, background.",
+        width: 600,
+        padding: "3em",
+        color: "#716add",
+        background: "#fff url(/images/trees.png)",
+        backdrop: `
+          rgba(0,0,123,0.4)
+          url("/images/nyan-cat.gif")
+          left top
+          no-repeat
+        `,
+      });
   }, [bookings?.length]);
 
   const handlePayment = (id) => {

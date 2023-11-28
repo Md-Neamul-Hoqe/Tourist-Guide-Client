@@ -113,7 +113,7 @@ const AddStory = () => {
           />
         </div>
         <div className="form-control mt-6">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn bg-blue-700 text-white">
             Add Story
           </button>
         </div>

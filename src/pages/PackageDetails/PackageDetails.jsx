@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import AwesomeSlider from "react-awesome-slider";
 import Swal from "sweetalert2";
@@ -12,7 +12,6 @@ import ReactDatePicker from "react-datepicker";
 import { useState } from "react";
 import "react-awesome-slider/dist/styles.css";
 import "react-datepicker/dist/react-datepicker.css";
-import { motion } from "framer-motion";
 
 const PackageDetails = () => {
   const { user } = useAuth();
@@ -217,7 +216,6 @@ const PackageDetails = () => {
           <Guides />
         </section>
 
-        {/* TODO: Tour Plane Section */}
         <section>
           {!isPausedTourPlane && !isLoadingTourPlane ? (
             Array.isArray(tourPlane) ? (
@@ -340,7 +338,7 @@ const PackageDetails = () => {
             <div className="form-control mt-6">
               <button
                 type="submit"
-                className={`btn btn-primary ${
+                className={`btn bg-blue-700 text-white ${
                   user?.email ? "" : "btn-disabled"
                 }`}>
                 {bookingStatus?.isBooked ? "Booked" : "Book Now"}
