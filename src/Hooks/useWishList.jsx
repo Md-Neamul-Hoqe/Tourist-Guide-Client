@@ -1,12 +1,10 @@
 import useAuth from "./useAuth";
-import useAxiosPublic from "./useAxiosPublic";
+import useAxiosHook from "./useAxiosHook";
 import { useQuery } from "@tanstack/react-query";
 
 const useWishList = () => {
-  const axios = useAxiosPublic();
+  const axios = useAxiosHook();
   const { user } = useAuth();
-
-  // if (!user?.email) return;
 
   const {
     data: wishList = [],

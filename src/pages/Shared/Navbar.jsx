@@ -86,7 +86,7 @@ const Navbar = () => {
           !isLoadingUserInfo &&
           userProfile?.contactDetails?.email &&
           userProfile?.role ? (
-            <div className="dropdown max-w-[50vw]">
+            <div className="dropdown max-w-[40vw]">
               <button tabIndex={0} className="avatar w-12">
                 {userProfile?.profilePicture ? (
                   <img
@@ -99,7 +99,7 @@ const Navbar = () => {
               </button>
               <ul
                 tabIndex={0}
-                className="menu dropdown-content border right-3 top-[61px] bg-base-100 z-[50]">
+                className="menu dropdown-content border right-3 top-[61px] bg-base-100 z-[50] w-60 border-blue-700 rounded-lg">
                 <ul className="border rounded-t-lg">
                   <li className="px-2 py-1">
                     Name:{" "}
@@ -110,7 +110,7 @@ const Navbar = () => {
                     Email: {userProfile?.contactDetails?.email}
                   </li>
                 </ul>
-                <li className="border px-5 py-1">
+                <li className="border px-0 py-1">
                   <NavLink
                     to={`/dashboard/${
                       userProfile?.role === "admin"
@@ -122,9 +122,17 @@ const Navbar = () => {
                     Dashboard
                   </NavLink>
                 </li>
-                <li className="border px-5 py-1 last-of-type:rounded-b-md">
+                <li className="border px-0 py-1 text-red-800">
                   <button onClick={handleLogOut}>Log Out</button>
                 </li>
+                {userProfile?.role === "tourist" && (
+                  <Link
+                    to="/dashboard/bookings"
+                    className="border px-2 py-1 text-blue-700 text-xs font-bold rounded-b-md">
+                    Get a 10% discount on your next booking after completing
+                    three bookings
+                  </Link>
+                )}
               </ul>
             </div>
           ) : (

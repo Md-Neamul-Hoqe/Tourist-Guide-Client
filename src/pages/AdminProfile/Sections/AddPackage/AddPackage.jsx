@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
-import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
+import useAxiosHook from "../../../../Hooks/useAxiosHook";
 const image_upload_key = import.meta.env.VITE_image_upload_key;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_upload_key}`;
 
 const AddPackage = () => {
-  const axios = useAxiosPublic();
+  const axios = useAxiosHook();
   const {
     register,
     handleSubmit,

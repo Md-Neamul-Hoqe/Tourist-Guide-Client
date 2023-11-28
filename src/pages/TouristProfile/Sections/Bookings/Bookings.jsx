@@ -2,11 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../Hooks/useAuth";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
+import useAxiosHook from "../../../../Hooks/useAxiosHook";
 
 const Bookings = () => {
   const { user } = useAuth();
-  const axios = useAxiosPublic();
+  const axios = useAxiosHook();
 
   const {
     data: bookings = [],

@@ -165,7 +165,7 @@ const PackageDetails = () => {
                 if (bookingStatus?.countBookings === 3)
                   Swal.fire({
                     title: "Congratulations",
-                    text: "Your got a 10% discounts",
+                    text: "You've got a 10% discount.",
                     width: 600,
                     padding: "3em",
                     color: "blue",

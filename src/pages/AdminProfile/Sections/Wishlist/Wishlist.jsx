@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import useWishList from "../../../../Hooks/useWishList";
-import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import useAxiosHook from "../../../../Hooks/useAxiosHook";
 
 const Wishlist = () => {
-  const axios = useAxiosPublic();
+  const axios = useAxiosHook();
   const [wishList, wishListLoading, wishListPaused, refetchWishList] =
     useWishList();
 

@@ -71,6 +71,7 @@ const ContactUs = () => {
       <div className="px-10">
         <h2 className="text-xl font-mono font-semibold">General Inquiries</h2>
 
+        {/* Know about us */}
         <div className="border rounded-lg p-5 mb-5">
           <p>
             For general inquiries about our services or destinations, please
@@ -101,6 +102,7 @@ const ContactUs = () => {
         </div>
       </div>
 
+      {/* Meet with us */}
       <div className="px-10">
         <h2 className="text-xl font-mono font-semibold mt-10">
           Office Location
@@ -124,6 +126,7 @@ const ContactUs = () => {
         </address>
       </div>
 
+      {/* Mail to us */}
       <form onSubmit={handleSubmit(onSubmitForm)} className="card-body">
         <h3 className="text-xl font-mono">
           Send from{" "}

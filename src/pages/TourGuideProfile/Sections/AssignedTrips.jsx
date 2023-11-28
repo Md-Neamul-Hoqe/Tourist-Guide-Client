@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import useUser from "../../../Hooks/useUser";
 import Loader from "../../Loader";
+import useAxiosHook from "../../../Hooks/useAxiosHook";
 
 const AssignedTrips = () => {
   const [userProfile, isPendingUserInfo, isLoadingUserInfo] = useUser();
-  const axios = useAxiosPublic();
+  const axios = useAxiosHook();
 
   const {
     data: trips = [],

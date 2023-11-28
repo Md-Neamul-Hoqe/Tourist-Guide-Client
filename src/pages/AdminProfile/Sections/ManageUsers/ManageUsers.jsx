@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 import useRole from "../../../../Hooks/useRole";
 import Swal from "sweetalert2";
 import Loader from "../../../Loader";
+import useAxiosHook from "../../../../Hooks/useAxiosHook";
 
 const ManageUsers = () => {
-  const axios = useAxiosPublic();
+  const axios = useAxiosHook();
   const [whichRole] = useRole();
 
   const {

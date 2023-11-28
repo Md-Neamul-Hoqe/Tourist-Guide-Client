@@ -1,9 +1,10 @@
 import axios from "axios";
 import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const axiosInstance = axios.create({
-  baseURL: "",
+  baseURL: "http://localhost:5000/api/v1",
   // baseURL: "https://tourist-guide-server.vercel.app/api/v1",
   withCredentials: true,
 });
@@ -16,7 +17,6 @@ const useAxiosHook = () => {
   // console.log(location);
   axiosInstance.interceptors.request.use(
     (config) => {
-      // console.log("Interceptor: ", config);
       return config;
     },
     (err) => {
@@ -32,7 +32,15 @@ const useAxiosHook = () => {
         console.error(err?.response?.status, err?.response?.data?.message);
 
         await userSignOut()
-          .then((res) => console.log(res))
+          .then((res) => {
+            console.log(res);
+            
+            Swal.fire({
+              icon: "error",
+              title: `${err?.response?.status}: ${err?.response?.data?.message}`,
+              showConfirmButton: true,
+            });
+          })
           .catch((err) => console.log(err));
 
         navigate("/credentials/login");
