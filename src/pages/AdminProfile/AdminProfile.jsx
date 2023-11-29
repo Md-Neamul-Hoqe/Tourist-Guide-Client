@@ -5,7 +5,7 @@ const AdminProfile = () => {
   const { userProfile, isPendingUserInfo, isLoadingUserInfo } =
     useDashboardAuth();
 
-  console.log(userProfile);
+  // console.log(userProfile);
   return (
     <div>
       {isLoadingUserInfo || isPendingUserInfo ? (

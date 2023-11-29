@@ -7,6 +7,7 @@ const Banner = () => {
     <section className={maxWidthStyles}>
       <div
         style={{
+          backgroundColor: "#000000",
           backgroundImage: `url(${bannerBg})`,
           backgroundOrigin: "border-box",
           backgroundPosition: "center",

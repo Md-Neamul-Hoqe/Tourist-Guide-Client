@@ -9,7 +9,7 @@ const AdminRoute = ({ children }) => {
   const { user, loading } = useAuth();
   const [whichRole, isPaused, whichRolePending, whichRoleLoading] = useRole();
 
-  console.log(loading, isPaused, whichRolePending, whichRoleLoading);
+  // console.log(loading, isPaused, whichRolePending, whichRoleLoading);
 
   if (loading || isPaused || whichRolePending || whichRoleLoading)
     return <Loader />;

@@ -7,8 +7,8 @@ const useCart = () => {
   const { user, loading } = useAuth();
 
   const { refetch, data: cart = [] } = useQuery({
-    queryKey: ["cart", user?.email],
     enabled: !loading,
+    queryKey: ["cart", user?.email],
     queryFn: async () => {
       try {
         const res =

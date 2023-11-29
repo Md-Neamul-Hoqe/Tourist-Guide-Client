@@ -105,13 +105,11 @@ const Register = () => {
 
   return (
     <aside className="py-5">
-      <h1 className="text-5xl font-bold text-center">Register now!</h1>
-      <form onSubmit={handleSubmit(onSubmitForm)} className="card-body">
+      <h1 className="text-2xl md:text-5xl font-bold text-center">Register now!</h1>
+      <form onSubmit={handleSubmit(onSubmitForm)} className="md:card-body">
         <div className="form-control">
           <label className="label">
-            <span className="label-text">
-              Name <span></span>
-            </span>
+            <span className="label-text">Name</span>
           </label>
           <input
             {...register("name")}
@@ -120,6 +118,8 @@ const Register = () => {
             className="input input-bordered"
           />
         </div>
+
+        {/* TODO: send message to admin to accept this role */}
         <div className="form-control">
           <label className="label">
             <span className="label-text">Requested Role</span>
@@ -127,7 +127,7 @@ const Register = () => {
           <select
             name="role"
             className="select select-bordered"
-            {...register("role", { default: "tourist" })}>
+            {...register("role", { value: "guide" })}>
             <option value="tourist">Tourist</option>
             <option value="guide">Guide</option>
           </select>

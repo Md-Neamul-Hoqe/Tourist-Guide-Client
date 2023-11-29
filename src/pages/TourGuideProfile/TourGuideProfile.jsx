@@ -7,12 +7,20 @@ import { Rating, RoundedStar } from "@smastrom/react-rating";
 import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+// import { updatePassword } from "firebase/auth";
+import useAxiosHook from "../../Hooks/useAxiosHook";
 
 const TourGuideProfile = () => {
   const { user } = useAuth();
   const { id } = useParams();
   const axios = useAxiosPublic();
+  const axiosSecure = useAxiosHook();
   const [rating, setRating] = useState(0);
+  const {
+    register: registerGuide,
+    handleSubmit: handleGuideSubmit,
+    formState: { errors },
+  } = useForm();
 
   const {
     data: reviews = [],
@@ -96,6 +104,62 @@ const TourGuideProfile = () => {
       });
     }
   };
+
+  // console.log(tourGuide);
+
+  const handleGuideProfileInfo = (data) => {
+    console.log(data);
+    const {
+      name,
+      skills,
+      education,
+      photoURL,
+      experiences,
+      phone,
+      location,
+      twitter,
+      instagram,
+    } = data;
+
+    const updatedUser = {
+      name,
+      profilePicture: photoURL || tourGuide?.profilePicture,
+      education: education,
+      skills: skills.split(","),
+      workExperience: experiences.split(","),
+      contactDetails: {
+        email: tourGuide?.contactDetails?.email,
+        phone,
+        location,
+        socialMedia: {
+          twitter,
+          instagram,
+        },
+      },
+    };
+
+    console.log(updatedUser);
+
+    try {
+      axiosSecure
+        .patch(`/update-user/${id}?email=${user?.email}`, updatedUser)
+        .then((res) => {
+          if (res?.data?.modifiedCount) {
+            Swal.fire({
+              icon: "success",
+              title: `Your profile information updated`,
+              showConfirmButton: false,
+              timer: 1000,
+            });
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+
+    // resetGuide()
+  };
+
   return (
     <>
       {/* About Guide */}
@@ -150,6 +214,145 @@ const TourGuideProfile = () => {
             </div>
           </div>
         ) : null}
+      </section>
+
+      {/* Update Guide Profile Info */}
+      <section
+        className={`my-10 ${
+          tourGuide?.contactDetails?.email !== user?.email ? "hidden" : ""
+        }`}>
+        <h3 className="text-xl font-semibold font-mono">
+          update Guide Profile
+        </h3>
+
+        {!isPausedGuide && !isLoading ? (
+          <form
+            onSubmit={handleGuideSubmit(handleGuideProfileInfo)}
+            className="card-body">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                {...registerGuide("name", { value: tourGuide?.name })}
+                type="text"
+                placeholder="name"
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Location</span>
+              </label>
+              <input
+                {...registerGuide("location", {
+                  value: tourGuide?.contactDetails?.location,
+                })}
+                type="text"
+                placeholder="Location"
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Phone</span>
+              </label>
+              <input
+                {...registerGuide("phone", {
+                  required: true,
+                  value: tourGuide?.contactDetails?.phone,
+                })}
+                type="tel"
+                placeholder="phone number"
+                className="input input-bordered"
+              />
+              {errors.phone && (
+                <p className="text-red-600">phone number is required.</p>
+              )}
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Twitter</span>
+              </label>
+              <input
+                {...registerGuide("twitter", {
+                  value: tourGuide?.contactDetails?.socialMedia?.twitter,
+                })}
+                type="text"
+                placeholder="@username"
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Instagram</span>
+              </label>
+              <input
+                {...registerGuide("instagram", {
+                  value: tourGuide?.contactDetails?.socialMedia?.instagram,
+                })}
+                type="text"
+                placeholder="@username"
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Skills</span>
+              </label>
+              <textarea
+                {...registerGuide("skills", {
+                  value: tourGuide?.skills?.join(","),
+                })}
+                type="text"
+                placeholder="Skills..."
+                className="textarea textarea-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Education</span>
+              </label>
+              <input
+                {...registerGuide("education", { value: tourGuide?.education })}
+                type="text"
+                placeholder="Education..."
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Experience</span>
+              </label>
+              <textarea
+                {...registerGuide("experiences", {
+                  value: tourGuide?.workExperience?.join(","),
+                })}
+                type="text"
+                placeholder="Experiences..."
+                className="textarea textarea-bordered"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Photo URL</span>
+              </label>
+              <input
+                {...registerGuide("photoURL")}
+                type="url"
+                placeholder="Photo URL"
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control mt-6">
+              <button type="submit" className="btn btn-primary">
+                Update Info
+              </button>
+            </div>
+          </form>
+        ) : (
+          <Loader />
+        )}
       </section>
 
       {/* Give a review form */}

@@ -4,9 +4,11 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  // sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  // updateEmail,
   updateProfile,
 } from "firebase/auth";
 import PropTypes from "prop-types";
@@ -47,9 +49,8 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
-
         const userInfo = { email: currentUser?.email };
-        
+
         try {
           axios.post("/auth/jwt", userInfo).then(() => {
             // console.log(userInfo);
@@ -82,6 +83,26 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+  // const updateUserEmailAndPassword = (email, password) => {
+  //   updateEmail(auth.currentUser, email)
+  //     .then(() => {
+  //       console.log(email);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+
+  //   sendPasswordResetEmail(auth, email)
+  //     .then(() => {
+  //       console.log(email);
+  //     })
+  //     .catch((error) => {
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       console.log(errorCode, errorMessage);
+  //     });
+  // };
+
   const authInfo = {
     user,
     setUser,
@@ -94,6 +115,7 @@ const AuthProvider = ({ children }) => {
     googleSignInUser,
     error,
     setError,
+    // updateUserEmailAndPassword,
   };
 
   return (

@@ -21,7 +21,7 @@ const AssignedTrips = () => {
       !!userProfile?.contactDetails?.email,
     queryKey: ["trips", userProfile?.contactDetails?.email],
     queryFn: async () => {
-      const res = await axios.get(`/guide-trips/${userProfile?._id}`);
+      const res = await axios.get(`/guide-trips/${userProfile?._id}?email=${userProfile?.contactDetails?.email}`);
       // console.log("Details Package: ", res?.data);
       return res?.data;
     },
@@ -40,7 +40,7 @@ const AssignedTrips = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         try {
-          axios.patch(`/update-trips/${id}`, { status }).then((res) => {
+          axios.patch(`/update-trips/${id}?email=${userProfile?.contactDetails?.email}`, { status }).then((res) => {
             if (res?.data?.modifiedCount) {
               refetch();
 

@@ -17,7 +17,7 @@ const Community = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-1 mx-32">
+      <div className="grid grid-cols-1 mx-5 md:mx-32">
         {!isLoading &&
           stories?.map((story, idx) => {
             return (

@@ -3,9 +3,11 @@ import useRole from "../../../../Hooks/useRole";
 import Swal from "sweetalert2";
 import Loader from "../../../Loader";
 import useAxiosHook from "../../../../Hooks/useAxiosHook";
+import useAuth from "../../../../Hooks/useAuth";
 
 const ManageUsers = () => {
   const axios = useAxiosHook();
+  const { user } = useAuth();
   const [whichRole, isPaused, whichRolePending, whichRoleLoading] = useRole();
 
   const {
@@ -21,7 +23,7 @@ const ManageUsers = () => {
       whichRole === "admin",
     queryKey: ["all-users"],
     queryFn: async () => {
-      const res = await axios.get(`/users`);
+      const res = await axios.get(`/users?email=${user?.email}`);
       //   console.log(res?.data);
 
       return res?.data;
@@ -31,18 +33,20 @@ const ManageUsers = () => {
   const handleUserRole = (id, userRole) => {
     // console.log(id, userRole);
     try {
-      axios.put(`/update-user/${id}`, { role: userRole }).then((res) => {
-        if (res?.data?.modifiedCount) {
-          Swal.fire({
-            icon: "success",
-            title: `User role updated as ${userRole}`,
-            showConfirmButton: false,
-            timer: 1000,
-          });
+      axios
+        .patch(`/update-user/${id}?email=${user?.email}`, { role: userRole })
+        .then((res) => {
+          if (res?.data?.modifiedCount) {
+            Swal.fire({
+              icon: "success",
+              title: `User role updated as ${userRole}`,
+              showConfirmButton: false,
+              timer: 1000,
+            });
 
-          refetchUsers();
-        }
-      });
+            refetchUsers();
+          }
+        });
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -65,18 +69,20 @@ const ManageUsers = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         try {
-          axios.delete(`/users/${id}`).then((response) => {
-            if (response?.data?.deletedCount) {
-              Swal.fire({
-                icon: "success",
-                title: `User Removed with Id: ${id}`,
-                showConfirmButton: false,
-                timer: 1000,
-              });
+          axios
+            .delete(`/delete-users/${id}?email=${user?.email}`)
+            .then((response) => {
+              if (response?.data?.deletedCount) {
+                Swal.fire({
+                  icon: "success",
+                  title: `User Removed with Id: ${id}`,
+                  showConfirmButton: false,
+                  timer: 1000,
+                });
 
-              refetchUsers();
-            }
-          });
+                refetchUsers();
+              }
+            });
         } catch (error) {
           console.log(error);
           Swal.fire({
@@ -93,8 +99,7 @@ const ManageUsers = () => {
     <div>
       {!isPendingUsers && !isLoadingUsers && users?.length ? (
         <div className="overflow-x-auto">
-          <table className="table">
-            {/* head */}
+          <table className="table max-md:table-xs">
             <thead>
               <tr>
                 <th>Identity</th>
@@ -104,6 +109,7 @@ const ManageUsers = () => {
                 <th className="text-center">Delete</th>
               </tr>
             </thead>
+            
             <tbody>
               {users?.map((user) => (
                 <tr key={user?._id}>

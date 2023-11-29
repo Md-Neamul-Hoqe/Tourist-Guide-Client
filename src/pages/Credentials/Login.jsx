@@ -26,7 +26,7 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(e.target);
+    // console.log(e.target);
 
     const form = new FormData(e.target);
     const email = form.get("email");
@@ -61,7 +61,7 @@ const Login = () => {
       console.log(error);
     }
 
-    console.log(email, password);
+    // console.log(email, password);
   };
 
   const handleCheckCaptcha = (e) => {
@@ -84,8 +84,8 @@ const Login = () => {
 
   return (
     <aside className="py-5">
-      <h1 className="text-5xl font-bold text-center">Login now!</h1>
-      <form onSubmit={handleLogin} className="card-body">
+      <h1 className="text-2xl md:text-5xl font-bold text-center">Login now!</h1>
+      <form onSubmit={handleLogin} className="md:card-body">
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
@@ -141,7 +141,6 @@ const Login = () => {
       </form>
       <div className="flex flex-col items-center gap-5">
         <div className="text-yellow-600">
-          {" "}
           New here? <Link to="/credentials/register">Create a New Account</Link>
         </div>
         <SocialLogin />

@@ -10,7 +10,7 @@ const Navbar = () => {
   const { userSignOut } = useAuth();
   const [userProfile, isPendingUserInfo, isLoadingUserInfo] = useUser();
 
-  console.log(userProfile);
+  // console.log(userProfile);
 
   const navLinks = (
     <>
@@ -46,6 +46,9 @@ const Navbar = () => {
       console.log(error);
     }
   };
+
+  // console.log(isPendingUserInfo, isLoadingUserInfo);
+  // console.log(userProfile?.contactDetails?.email);
 
   return (
     <nav className="bg-base-100">

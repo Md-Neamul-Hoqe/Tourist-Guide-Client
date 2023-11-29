@@ -14,7 +14,7 @@ const Dashboard = () => {
     useDashboardAuth();
 
   return (
-    <section className="flex min-h-screen">
+    <section className="flex min-h-full">
       {isPaused || isPendingUserInfo || isLoadingUserInfo ? (
         // <Loader/>
         ""

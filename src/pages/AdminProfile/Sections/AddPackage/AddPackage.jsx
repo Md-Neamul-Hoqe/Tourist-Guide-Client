@@ -2,11 +2,13 @@ import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import useAxiosHook from "../../../../Hooks/useAxiosHook";
+import useAuth from "../../../../Hooks/useAuth";
 const image_upload_key = import.meta.env.VITE_image_upload_key;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_upload_key}`;
 
 const AddPackage = () => {
   const axios = useAxiosHook();
+  const { user } = useAuth();
   const {
     register,
     handleSubmit,
@@ -40,32 +42,36 @@ const AddPackage = () => {
       thumbnail: thumbnailURL,
     };
 
-    axios.post("/add-packages", packageInfo).then((res) => {
-      if (res?.data?.insertedId) {
-        // console.log("User photo updated.");
+    axios
+      .post(`/add-packages?email=${user?.email}`, packageInfo)
+      .then((res) => {
+        if (res?.data?.insertedId) {
+          // console.log("User photo updated.");
 
-        Swal.fire({
-          icon: "success",
-          title: "User profile updated successfully.",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+          Swal.fire({
+            icon: "success",
+            title: "User profile updated successfully.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
 
-        reset();
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: `Can't added.`,
-          showConfirmButton: true,
-        });
-      }
-    });
+          reset();
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: `Can't added.`,
+            showConfirmButton: true,
+          });
+        }
+      });
   };
 
   return (
     <aside className="py-5">
-      <h1 className="text-5xl font-bold text-center">Add a New Package</h1>
-      <form onSubmit={handleSubmit(onSubmitForm)} className="card-body">
+      <h1 className="text-2xl md:text-5xl font-bold text-center">
+        Add a New Package
+      </h1>
+      <form onSubmit={handleSubmit(onSubmitForm)} className="md:card-body">
         <div className="form-control">
           <label className="label">
             <span className="label-text">Type</span>
@@ -120,9 +126,9 @@ const AddPackage = () => {
             {...register("images")}
             type="file"
             multiple
-            accept="image/jpg, image/jpeg, image/png"
+            accept="image/jpg, image/jpeg, image/png, image/webp"
             placeholder="Scenario Images"
-            className="file-input file-input-bordered file-input-info"
+            className="file-input file-input-bordered file-input-info w-full"
           />
         </div>
         <div className="form-control">
@@ -134,7 +140,7 @@ const AddPackage = () => {
             type="file"
             accept="image/jpg, image/jpeg, image/png"
             placeholder="Cover Photo URL"
-            className="file-input file-input-bordered file-input-info"
+            className="file-input file-input-bordered file-input-info w-full"
           />
         </div>
         <div className="form-control mt-6">
@@ -142,7 +148,6 @@ const AddPackage = () => {
             Add Package
           </button>
         </div>
-        {/* {errors ? <p>{errors}</p> : null} */}
       </form>
 
       <Helmet>

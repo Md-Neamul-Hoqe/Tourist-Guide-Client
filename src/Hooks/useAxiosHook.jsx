@@ -55,7 +55,7 @@ const useAxiosHook = () => {
         console.error(err?.response);
         Swal.fire({
           icon: "error",
-          title: "Please enabled your third party cookie",
+          title: "Please enable your third-party cookies.",
           showConfirmButton: true,
         });
       }

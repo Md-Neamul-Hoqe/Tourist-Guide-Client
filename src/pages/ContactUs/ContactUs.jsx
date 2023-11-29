@@ -21,54 +21,10 @@ const ContactUs = () => {
       showConfirmButton: false,
       timer: 1500,
     });
-
-    // console.log(data);
-    // const {
-    //   email,
-    //   password,
-    //   name: displayName,
-    //   photoURL,
-    //   experiences,
-    //   skills,
-    //   education,
-    //   phone,
-    //   location,
-    //   twitter,
-    //   instagram,
-    // } = data;
-    // https://i.ibb.co/WFhJcTx/user-3.png
-    // console.log({ email, password, name, photoURL });
-
-    // axios
-    //   .post("/users", userInfo)
-    //   .then((res) => {
-    //     if (res?.data?.insertedId) {
-    //       // console.log("User photo updated.");
-
-    //       reset();
-
-    //       navigate(from, { replace: true });
-    //     } else {
-    //       Swal.fire({
-    //         icon: "error",
-    //         title: `Database error: ${res?.data}.`,
-    //         showConfirmButton: true,
-    //       });
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     return Swal.fire({
-    //       icon: "warning",
-    //       title: error.message,
-    //       showConfirmButton: false,
-    //       timer: 2000,
-    //     });
-    //   });
   };
   return (
     <section>
-      <div className="px-10">
+      <div className="px-5 md:px-10">
         <h2 className="text-xl font-mono font-semibold">General Inquiries</h2>
 
         {/* Know about us */}
@@ -77,7 +33,7 @@ const ContactUs = () => {
             For general inquiries about our services or destinations, please
             contact us via email or phone:
           </p>
-          <address className="border-s-4 border-blue-700 ps-3 ms-10 m-5">
+          <address className="border-s-4 border-blue-700 ps-3 md:ms-10 m-5 overflow-x-auto">
             <p>Email: info@dreamplace.com</p> <p>Phone: +1 (555) 123-4567</p>
           </address>
         </div>
@@ -86,7 +42,7 @@ const ContactUs = () => {
             Customer Support Our dedicated customer support team is available to
             assist you with any questions or concerns:
           </p>
-          <address className="border-s-4 border-blue-700 ps-3 ms-10 m-5">
+          <address className="border-s-4 border-blue-700 ps-3 md:ms-10 m-5 overflow-x-auto">
             <p>Email: support@dreamplace.com</p> <p>Phone: +1 (555) 987-6543</p>
           </address>
         </div>
@@ -95,7 +51,7 @@ const ContactUs = () => {
             Partnership Opportunities If you&apos;re interested in partnership
             opportunities or collaborations, please reach out to us:
           </p>
-          <address className="border-s-4 border-blue-700 ps-3 ms-10 m-5">
+          <address className="border-s-4 border-blue-700 ps-3 md:ms-10 m-5 overflow-x-auto">
             <p>Email: partnerships@dreamplace.com</p>{" "}
             <p>Phone: +1 (555) 876-5432</p>
           </address>
@@ -109,7 +65,7 @@ const ContactUs = () => {
         </h2>
         <p>If you prefer to visit us or send mail, you can find us at:</p>
 
-        <address className="border-s-4 border-blue-700 ms-10 m-5 ps-3">
+        <address className="border-s-4 border-blue-700 md:ms-10 m-5 ps-3 overflow-x-auto">
           <p>Dream Place Tourist Guide Headquarters</p>
           <p>123 Main Street,</p>
           <p>Sylhet, Sylhet, ZIP Code: 3114 ,</p>
@@ -119,7 +75,7 @@ const ContactUs = () => {
         <h2 className="text-xl font-mono font-semibold mt-10">Office Hours</h2>
         <p>Our office is open during the following hours:</p>
 
-        <address className="border-s-4 border-blue-700 ms-10 m-5 ps-3">
+        <address className="border-s-4 border-blue-700 md:ms-10 m-5 ps-3 overflow-x-auto">
           <p>Monday to Friday: 9:00 AM to 5:00 PM (Local Time)</p>
           <p>Saturday: 10:00 AM to 2:00 PM (Local Time)</p>
           <p>Sunday: Closed</p>
@@ -134,8 +90,10 @@ const ContactUs = () => {
             {user?.email}
           </span>{" "}
           to{" "}
-          <span className="italic font-semibold hover:underline">
-            hoqe1997@gmail.com
+          <span
+            title="hoqe1997@gmail.com"
+            className="italic font-semibold hover:underline">
+            admin
           </span>
         </h3>
         <div className="w-full relative mb-10">

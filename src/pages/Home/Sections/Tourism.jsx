@@ -41,20 +41,18 @@ const Tourism = () => {
           <div className="w-full my-20">
             <div className="w-full md:w-[80%] mx-auto">
               <YouTube
-                videoId="vzSHcyXfNPw"
+                loading="lazy"
+                title={"Iceland Vacation Travel Guide | Dream Place"}
                 opts={{
-                  height: "500",
+                  height: "400",
                   width: "100%",
-                  playerVars: {
-                    // autoplay: 1,
-                  },
                 }}
+                videoId="vzSHcyXfNPw"
                 onReady={(event) => {
                   event.target.mute();
                   event.target.setVolume(0);
                   event.target.pauseVideo();
                 }}
-                title="YouTube video player"
               />
             </div>
 
@@ -174,7 +172,7 @@ const Tourism = () => {
                 "Something Wrong."
               )
             ) : (
-              <Loader/>
+              <Loader />
             )}
           </div>
 

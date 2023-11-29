@@ -7,7 +7,7 @@ const PrivateRoutes = ({ children }) => {
   const location = useLocation();
   const { user, loading } = useAuth();
 
-  console.log(loading);
+  // console.log(loading);
 
   if (loading) return <Loader />;
 
