@@ -9,7 +9,7 @@ const Community = () => {
     queryKey: ["stories"],
     queryFn: async () => {
       const res = await axios.get("/user/stories");
-      console.log(res?.data);
+      // console.log('Stories: ',res?.data);
 
       return res?.data;
     },

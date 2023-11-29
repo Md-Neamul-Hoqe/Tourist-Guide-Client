@@ -23,12 +23,12 @@ const Stories = () => {
   });
 
   return (
-    <div className="text-center pb-10">
+    <div className="text-center max-lg:p-5 lg:py-10">
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 pb-20">
         {!isLoading &&
           stories?.map((story, idx) => {
             return (
-              <div key={idx} className="card rounded-lg max-h-52 image-full">
+              <div key={idx} className="card md:max-h-52 rounded-lg image-full">
                 <figure>
                   <img
                     className="w-full h-full rounded-lg"

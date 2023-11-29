@@ -49,7 +49,7 @@ const Login = () => {
           return navigate(from, { replace: true });
         })
         .catch((error) => {
-          console.log(error.message);
+          console.log(error);
           Swal.fire({
             icon: "warning",
             title: error.message,

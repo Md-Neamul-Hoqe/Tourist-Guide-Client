@@ -27,13 +27,13 @@ const useAxiosHook = () => {
   axiosInstance.interceptors.response.use(
     (res) => res,
     async (err) => {
-      //console.log("response: ", err);
+      // console.log("response: ", err);
       if (err?.response?.status === 401 || err?.response?.status === 403) {
-        console.error(err?.response?.status, err?.response?.data?.message);
+        console.error(err?.response);
 
         await userSignOut()
-          .then((res) => {
-            console.log(res);
+          .then(() => {
+            // console.log(res);
 
             Swal.fire({
               icon: "error",
@@ -41,9 +41,23 @@ const useAxiosHook = () => {
               showConfirmButton: true,
             });
           })
-          .catch((err) => console.log(err));
+          .catch((error) => {
+            console.log(error);
+            Swal.fire({
+              icon: "error",
+              title: `${error?.status}: ${error?.message}`,
+              showConfirmButton: true,
+            });
+          });
 
         navigate("/credentials/login");
+      } else if (err?.response?.status === 400) {
+        console.error(err?.response);
+        Swal.fire({
+          icon: "error",
+          title: "Please enabled your third party cookie",
+          showConfirmButton: true,
+        });
       }
       return Promise.reject(err);
     }

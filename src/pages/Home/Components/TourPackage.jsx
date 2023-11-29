@@ -23,15 +23,15 @@ const TourPackage = ({ thePackage }) => {
     if (user?.email && !wishListPaused && !wishListLoading) {
       const wishListLength = wishList?.length;
 
-      console.log("No. of Wish packages: ", wishListLength);
+      // console.log("No. of Wish packages: ", wishListLength);
 
       for (let index = 0; index < wishListLength; index++) {
-        console.log(
-          "are The ids equal? ",
-          wishList[index]?._id,
-          thePackage?._id,
-          wishList[index]?._id === thePackage?._id
-        );
+        // console.log(
+        //   "are The ids equal? ",
+        //   wishList[index]?._id,
+        //   thePackage?._id,
+        //   wishList[index]?._id === thePackage?._id
+        // );
 
         if (wishList[index]?._id === thePackage?._id) {
           setInWishList(true);
@@ -60,7 +60,7 @@ const TourPackage = ({ thePackage }) => {
       axios
         .post("/wish-list/add-packages", wishPackage)
         .then((res) => {
-          console.log(res?.data);
+          // console.log('Wish list created: ',res?.data);
 
           res?.data?.insertedId && setInWishList(true);
         })
@@ -69,7 +69,7 @@ const TourPackage = ({ thePackage }) => {
       axios
         .delete(`/wish-list/delete-package/${id}`)
         .then((res) => {
-          console.log(res?.data);
+          // console.log('From Wishlist deleted:',res?.data);
 
           res?.data?.deletedCount && setInWishList(!inWishList);
         })

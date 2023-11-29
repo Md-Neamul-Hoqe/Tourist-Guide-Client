@@ -16,7 +16,7 @@ const SocialLogin = () => {
 
     googleSignInUser()
       .then(({ user }) => {
-        console.log("Firebase result: ", user);
+        // console.log("Firebase result: ", user);
 
         const userInfo = {
           name: user?.displayName,
@@ -32,7 +32,7 @@ const SocialLogin = () => {
         axios
           .post("/users", userInfo)
           .then(({ data }) => {
-            console.log("Database result: ", data);
+            // console.log("Database result: ", data);
 
             data?.message
               ? setTimeout(() => {

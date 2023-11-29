@@ -38,10 +38,10 @@ const Register = () => {
     console.log({ email, password, name, photoURL });
 
     createUser(email, password)
-      .then((res) => {
-        const loggedUser = res?.user;
+      .then(() => {
+        // const loggedUser = res?.user;
 
-        console.log(loggedUser);
+        // console.log('User created: ',loggedUser);
         updateUserProfile(displayName, photoURL)
           .then(() => {
             const userInfo = {
@@ -62,9 +62,9 @@ const Register = () => {
               },
             };
 
-            console.log(userInfo);
+            // console.log('User will updated: ',userInfo);
 
-            axiosPublic.post("/users", userInfo).then((res) => {
+            axiosPublic.post("/create-user", userInfo).then((res) => {
               if (res?.data?.insertedId) {
                 // console.log("User photo updated.");
 

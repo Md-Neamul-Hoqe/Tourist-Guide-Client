@@ -28,6 +28,16 @@ const TourGuideProfile = () => {
     },
   });
 
+  // const { data: averageUserRating = 0 } = useQuery({
+  //   enabled: !!id,
+  //   queryKey: ["rating", id],
+  //   queryFn: async () => {
+  //     const reviews = await axios.get(`/rating/${id}`);
+  //     console.log(reviews?.data);
+  //     return reviews?.data?.rating;
+  //   },
+  // });
+
   const totalRating = reviews?.reduce(
     (total, currentValue) => total + currentValue?.rating,
     0
@@ -100,9 +110,9 @@ const TourGuideProfile = () => {
               />
             </figure>
             <div className="card-body text-start">
-              <h2 className="card-title">
+              <h2 className="card-title text-2xl">
                 {tourGuide?.name}
-                <span className="badge bg-white text-blue-700 badge-outline">
+                <span className="badge text-xs bg-white text-blue-700 badge-outline">
                   {tourGuide?.role}
                 </span>
               </h2>
@@ -209,10 +219,11 @@ const TourGuideProfile = () => {
                       </figure>
                     </div>
 
-                    <div className="flex flex-col gap-5">
-                      <h4 className="text-xl font-semibold">
-                        {review?.user?.displayName}
-                      </h4>
+                    <div className="flex flex-col gap-1">
+                      <h4 className="text-xl font-semibold">{review?.title}</h4>
+                      <small className="text-sm font-semibold">
+                        &mdash; {review?.user?.displayName}
+                      </small>
                       <Rating
                         style={{ maxWidth: 100 }}
                         value={review?.rating}
@@ -225,7 +236,7 @@ const TourGuideProfile = () => {
                         }}
                         readOnly
                       />
-                      <div className="rounded-lg mb-5">{review?.review}</div>
+                      <div className="rounded-lg my-5">{review?.review}</div>
                     </div>
                   </div>
 

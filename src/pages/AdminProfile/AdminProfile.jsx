@@ -16,9 +16,9 @@ const AdminProfile = () => {
             <img src={userProfile?.profilePicture} alt={userProfile?.name} />
           </figure>
           <div className="card-body gap-0">
-            <h2 className="card-title">
+            <h2 className="card-title text-2xl">
               {userProfile?.name}
-              <span className="badge bg-white text-blue-700 badge-outline">
+              <span className="badge text-xs bg-white text-blue-700 badge-outline">
                 {userProfile?.role}
               </span>
             </h2>

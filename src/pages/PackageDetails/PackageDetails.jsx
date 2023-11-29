@@ -56,7 +56,7 @@ const PackageDetails = () => {
     queryFn: async () => {
       const res = await axios.get(`/tour-plane/${tourPackage?.type}`);
 
-      console.log("Planes: ", res?.data);
+      // console.log("Planes: ", res?.data);
 
       return res?.data?.planes;
     },
@@ -68,7 +68,7 @@ const PackageDetails = () => {
     queryKey: ["isBooked", user?.email],
     queryFn: async () => {
       const res = await axios.get(`/isBooked/${id}?email=${user?.email}`);
-      console.log("Already Package booked: ", res?.data);
+      // console.log("Already Package booked: ", res?.data);
       return res?.data;
     },
   });

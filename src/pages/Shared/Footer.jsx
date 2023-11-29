@@ -15,7 +15,7 @@ const Footer = () => {
         </aside>
         <nav>
           <header className="footer-title">Social</header>
-          <ul className="grid grid-flow-col gap-4">
+          <ul className="grid md:grid-flow-col gap-4">
             <li>
               <Link to="/">Home</Link>
             </li>

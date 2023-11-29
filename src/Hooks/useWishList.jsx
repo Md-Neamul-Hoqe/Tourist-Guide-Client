@@ -17,7 +17,7 @@ const useWishList = () => {
     queryFn: async () => {
       if (user?.email) {
         const res = await axios.get(`/wish-list/${user?.email}`);
-        console.log(res?.data);
+        // console.log("wishList: ",res?.data);
 
         return res?.data;
       }

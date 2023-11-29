@@ -6,7 +6,7 @@ import useAxiosHook from "../../../../Hooks/useAxiosHook";
 
 const ManageUsers = () => {
   const axios = useAxiosHook();
-  const [whichRole] = useRole();
+  const [whichRole, isPaused, whichRolePending, whichRoleLoading] = useRole();
 
   const {
     data: users,
@@ -14,7 +14,11 @@ const ManageUsers = () => {
     isLoading: isLoadingUsers,
     refetch: refetchUsers,
   } = useQuery({
-    enabled: whichRole === "admin",
+    enabled:
+      !isPaused &&
+      !whichRolePending &&
+      !whichRoleLoading &&
+      whichRole === "admin",
     queryKey: ["all-users"],
     queryFn: async () => {
       const res = await axios.get(`/users`);
@@ -78,7 +82,7 @@ const ManageUsers = () => {
           Swal.fire({
             icon: "error",
             title: error?.message,
-            showConfirmButton: true
+            showConfirmButton: true,
           });
         }
       }
@@ -168,7 +172,7 @@ const ManageUsers = () => {
           </table>
         </div>
       ) : (
-        <Loader/>
+        <Loader />
       )}
     </div>
   );

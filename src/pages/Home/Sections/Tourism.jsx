@@ -29,7 +29,7 @@ const Tourism = () => {
   });
 
   return (
-    <div className={`pt-24 relative ${maxWidthStyles}`}>
+    <div className={`pt-24 max-lg:px-5 relative ${maxWidthStyles}`}>
       <Tabs>
         <TabList>
           <Tab>Overview</Tab>
