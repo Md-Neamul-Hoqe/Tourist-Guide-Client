@@ -392,7 +392,10 @@ const TourGuideProfile = () => {
                 rows="10"
                 placeholder="review text..."
                 className="textarea textarea-bordered text-xl"></textarea>
-              <button className="btn btn-neutral px-7 py-4 absolute right-10 bottom-12">
+              <button
+                className={`btn btn-neutral px-7 py-4 absolute right-10 bottom-12 ${
+                  user ? "" : "btn-disabled"
+                }`}>
                 Post Review
               </button>
             </div>
