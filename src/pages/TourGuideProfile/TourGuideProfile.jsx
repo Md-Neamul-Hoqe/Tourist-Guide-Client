@@ -82,7 +82,7 @@ const TourGuideProfile = () => {
     };
 
     try {
-      axios.post("/create-reviews", saveReview).then((res) => {
+      axiosSecure.post("/create-reviews", saveReview).then((res) => {
         if (res?.data?.insertedId) {
           Swal.fire({
             icon: "success",

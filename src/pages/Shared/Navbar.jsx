@@ -87,8 +87,7 @@ const Navbar = () => {
         <div className="navbar-end">
           {!isPendingUserInfo &&
           !isLoadingUserInfo &&
-          userProfile?.contactDetails?.email &&
-          userProfile?.role ? (
+          userProfile?.contactDetails?.email ? (
             <div className="dropdown max-w-[40vw]">
               <button tabIndex={0} className="avatar w-12">
                 {userProfile?.profilePicture ? (
