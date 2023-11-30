@@ -1,6 +1,6 @@
 import Loader from "../Loader";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useForm } from "react-hook-form";
 import { Rating, RoundedStar } from "@smastrom/react-rating";
@@ -15,6 +15,7 @@ const TourGuideProfile = () => {
   const { id } = useParams();
   const axios = useAxiosPublic();
   const axiosSecure = useAxiosHook();
+  const navigate = useNavigate();
   const [rating, setRating] = useState(0);
   const {
     register: registerGuide,
@@ -69,6 +70,7 @@ const TourGuideProfile = () => {
   });
   // console.log(tourGuide?.contactDetails?.email, user?.email);
   const onSubmitForm = (data) => {
+    !user && navigate("/credentials/login", { replace: true });
     // console.log(data);
     const { review, title } = data;
 
