@@ -7,7 +7,7 @@ import useAuth from "../../../../Hooks/useAuth";
 
 const ManageUsers = () => {
   const axios = useAxiosHook();
-  const { user } = useAuth();
+  const { user, deleteCurrentUser } = useAuth();
   const [whichRole, isPaused, whichRolePending, whichRoleLoading] = useRole();
 
   const {
@@ -58,6 +58,7 @@ const ManageUsers = () => {
 
   const handleRemoveUser = (id) => {
     // console.log(id);
+
     Swal.fire({
       title: "Are you sure?",
       text: "You want to delete the user",
@@ -73,6 +74,13 @@ const ManageUsers = () => {
             .delete(`/delete-users/${id}?email=${user?.email}`)
             .then((response) => {
               if (response?.data?.deletedCount) {
+                axios.get(`/users/${id}`).then((res) => {
+                  console.log(res?.data);
+
+                  // deleteCurrentUser(res?.data);
+                });
+                console.log(response?.data);
+
                 Swal.fire({
                   icon: "success",
                   title: `User Removed with Id: ${id}`,
@@ -109,7 +117,7 @@ const ManageUsers = () => {
                 <th className="text-center">Delete</th>
               </tr>
             </thead>
-            
+
             <tbody>
               {users?.map((user) => (
                 <tr key={user?._id}>

@@ -9,8 +9,8 @@ const SocialLogin = () => {
   const navigate = useNavigate();
   const { googleSignInUser, setError } = useAuth();
 
-  const handleGoogleSignIn = (event) => {
-    console.log(event.target);
+  const handleGoogleSignIn = () => {
+    // console.log(event.target);
     // event.preventDefault();
     // console.log("object");
 
@@ -30,7 +30,7 @@ const SocialLogin = () => {
         };
 
         axios
-          .post("/users", userInfo)
+          .post("/create-user", userInfo)
           .then(({ data }) => {
             // console.log("Database result: ", data);
 

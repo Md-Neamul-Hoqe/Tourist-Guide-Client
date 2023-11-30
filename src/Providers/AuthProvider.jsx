@@ -3,6 +3,7 @@ import auth from "../config/firebase.config";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  deleteUser,
   onAuthStateChanged,
   // sendPasswordResetEmail,
   signInWithEmailAndPassword,
@@ -47,6 +48,7 @@ const AuthProvider = ({ children }) => {
   /* Auth state change */
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.log(auth?.currentUser);
       setUser(currentUser);
       if (currentUser) {
         const userInfo = { email: currentUser?.email };
@@ -83,6 +85,17 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+  const deleteCurrentUser = (user) => {
+    // console.log(user);
+    deleteUser(user)
+      .then(() => {
+        console.log("auth?.currentUser");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   // const updateUserEmailAndPassword = (email, password) => {
   //   updateEmail(auth.currentUser, email)
   //     .then(() => {
@@ -115,6 +128,7 @@ const AuthProvider = ({ children }) => {
     googleSignInUser,
     error,
     setError,
+    deleteCurrentUser,
     // updateUserEmailAndPassword,
   };
 
